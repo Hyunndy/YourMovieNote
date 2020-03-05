@@ -113,7 +113,7 @@
                 android:layout_toEndOf="@+id/movie_poster"
                 android:background="@android:color/transparent"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/ic_thumb_up" />
+                app:srcCompat="@drawable/likeebtn_states" />
 
             <!-- 좋아요 수 -->
             <TextView
@@ -139,7 +139,7 @@
                 android:layout_toEndOf="@+id/movie_like_count"
                 android:background="@android:color/transparent"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/ic_thumb_down" />
+                app:srcCompat="@drawable/dislikebtn_states" />
 
             <!-- 싫어요 수 -->
             <TextView
@@ -289,9 +289,9 @@
         <!-- 줄거리  -->
         <LinearLayout
             android:id="@+id/contents_layout"
-            android:layout_marginLeft="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/division">
@@ -329,9 +329,9 @@
         <!-- 감독/출연  -->
         <RelativeLayout
             android:id="@+id/crew_layout"
-            android:layout_marginLeft="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/division2">
@@ -342,21 +342,21 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/crew"
                 android:text="감독"
-                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/director_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:layout_alignTop="@+id/director"
-                android:layout_toRightOf="@+id/director"
                 android:layout_marginLeft="15dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toRightOf="@+id/director"
                 android:text="윤종빈"
-                android:textStyle="bold"
-                android:textSize="15sp"  />
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/actors"
@@ -364,21 +364,21 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/director"
                 android:text="출연"
-                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/actors_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:layout_alignTop="@+id/actors"
-                android:layout_toRightOf="@+id/actors"
                 android:layout_marginLeft="15dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toRightOf="@+id/actors"
                 android:text="하정우(도치), 강동원(조윤)"
-                android:textStyle="bold"
-                android:textSize="15sp"  />
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/crew"
@@ -406,49 +406,52 @@
             android:id="@+id/comment_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/division3"
-            android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/division3">
 
-            android:layout_marginTop="10dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
 
-            <TextView
-                android:id="@+id/comment_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerInParent="true"
-                android:text="한줄평"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                app:layout_constraintStart_toStartOf="parent">
 
-            <ImageButton
-                android:id="@+id/new_comment_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/new_comment"
-                android:layout_marginRight="10dp"
-                android:layout_centerInParent="true"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_review_selected" />
+                <TextView
+                    android:id="@+id/comment_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:text="한줄평"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/new_comment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
-                android:layout_marginRight="10dp"
-                android:text="작성하기"
-                android:textSize="15dp"
-                android:textColor="@color/colorOrange"
-                android:textStyle="bold" />
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/new_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/new_comment_btn"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_review_selected" />
 
-        <!-- 한줄평 리스트뷰 -->
+                <Button
+                    android:id="@+id/new_comment_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/transparent"
+                    android:text="작성하기"
+                    android:textColor="@color/colorOrange"
+                    android:textSize="15dp"
+
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <!-- 한줄평 리스트뷰 -->
 
             <!-- 버튼 -->
             <androidx.recyclerview.widget.RecyclerView
@@ -459,20 +462,20 @@
                 app:layout_constraintTop_toBottomOf="@id/comment_layout"></androidx.recyclerview.widget.RecyclerView>
 
             <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:text="모두보기"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/comment_list_layout"
-            android:textColor="@color/colorOrange"
-            android:textStyle="bold"
-            android:background="@drawable/rectangle_four_line"
-            />
+                android:id="@+id/show_all_comment_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rectangle_four_line"
+                android:text="모두보기"
+                android:textColor="@color/colorOrange"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/comment_list_layout" />
         </LinearLayout>
 
 
@@ -488,26 +491,26 @@
         <!-- 페북/카톡/예매하기  -->
         <LinearLayout
             android:id="@+id/icon_layout"
-            app:layout_constraintTop_toBottomOf="@id/division4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="3">
+            android:weightSum="3"
+            app:layout_constraintTop_toBottomOf="@id/division4">
 
             <!-- 페북  -->
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ic_facebook"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_facebook" />
             <!-- 카톡  -->
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ic_kakao"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_kakao" />
             <!-- 예매하기  -->
             <Button
                 android:layout_width="wrap_content"
@@ -521,7 +524,6 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
