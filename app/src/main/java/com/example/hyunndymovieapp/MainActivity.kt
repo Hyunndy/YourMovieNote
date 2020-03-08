@@ -1,14 +1,28 @@
 package com.example.hyunndymovieapp
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Layout
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.hyunndymovieapp.comment.CommentDTO
-import com.example.hyunndymovieapp.comment.CommentRecyclerViewAdapter
+import android.widget.Toolbar
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.*
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import androidx.viewpager.widget.ViewPager
+import com.example.hyunndymovieapp.Fragment.MovieDetailFragment
+import com.example.hyunndymovieapp.Fragment.MovieListFragment
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 /* ----------------------------------------------------------------------------------------------
@@ -33,94 +47,119 @@ enum class UPDATECOMMENTLISTCODE(val value:Int){
     UPDATE(3000)
 }
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MovieListFragment.OnBtnSelectedListner, NavigationView.OnNavigationItemSelectedListener {
 
-    // 좋아요/싫어요
-    var likeCount = 0
-    var dislikeCount = 0
-
-    // 어뎁터
-    var commentListAdapter = CommentRecyclerViewAdapter()
+    private lateinit var movieListPager : ViewPager
+    private lateinit var movieListPagerAdapter : MovieListPagerAdapter
+    private lateinit var toolbar : androidx.appcompat.widget.Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setCommentlist()
+        createMovieListPager()
 
-        setBtnListener()
+        createNavigationBar()
     }
 
-    private fun setCommentlist(){
-        comment_list_layout.adapter = commentListAdapter
-        comment_list_layout.layoutManager = LinearLayoutManager(this)
+    private fun createNavigationBar() {
 
-        // 줄 사이에 구분선 추가
-        comment_list_layout.addItemDecoration(DividerItemDecoration(this, 1))
+        nav_view.setNavigationItemSelectedListener(this)
+
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        // ActionBar 좌상단에 위치한 버튼
+         var toggle = ActionBarDrawerToggle(this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+         drawer_layout.addDrawerListener(toggle)
+         toggle.syncState()
     }
 
-    private fun setBtnListener(){
 
-        // 작성하기
-        new_comment_btn.setOnClickListener {
-            Toast.makeText(this, "작성하기 버튼이 눌렸습니다.", Toast.LENGTH_LONG).show()
-            startActivityForResult(Intent(this, NewCommentActivity::class.java), REQUESTCODE.ADD_NEWCOMMENT.value)
-        }
-
-        // 모두보기
-        show_all_comment_btn.setOnClickListener {
-            Toast.makeText(this, "모두보기 버튼이 눌렸습니다.", Toast.LENGTH_LONG).show()
-            //묶어서 보내기
-            var intent = Intent(this, CommentListView::class.java)
-            intent.putParcelableArrayListExtra("commentList", commentListAdapter.commentList)
-            startActivity(intent)
-        }
-
-        // 좋아요버튼
-        movie_like_btn.setOnClickListener {
-            if(movie_like_btn.isSelected) return@setOnClickListener
-
-            if(movie_dislike_btn.isSelected) {
-                movie_dislike_btn.isSelected = false
-                dislikeCount--
-                movie_dislike_count.text = dislikeCount.toString()
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.nav_movie_list -> {
+                showMovieListPage()
             }
-
-            likeCount++
-            movie_like_count.text = likeCount.toString()
-            movie_like_btn.isSelected = true
-        }
-
-        // 싫어요버튼
-        movie_dislike_btn.setOnClickListener{
-            if(movie_dislike_btn.isSelected) return@setOnClickListener
-
-            if(movie_like_btn.isSelected) {
-                movie_like_btn.isSelected = false
-                likeCount--
-                movie_like_count.text = likeCount.toString()
+            R.id.nav_movie_API -> {
+                Toast.makeText(applicationContext, "우왕우왕", Toast.LENGTH_LONG).show()
             }
-
-            dislikeCount++
-            movie_dislike_count.text = dislikeCount.toString()
-            movie_dislike_btn.isSelected = true
+            R.id.nav_movie_book -> {
+                Toast.makeText(applicationContext, "우왕우왕", Toast.LENGTH_LONG).show()
+            }
+            R.id.nav_setting -> {
+                Toast.makeText(applicationContext, "우왕우왕", Toast.LENGTH_LONG).show()
+            }
         }
+
+
+        drawer_layout.closeDrawer(GravityCompat.START)
+
+        return true
+    }
+
+    private fun createMovieListPager() {
+
+        // 영화 목록 뷰페이저 Init
+        movieListPager = findViewById(R.id.movie_list_pager)
+        // 뷰페이저 Adapter Init
+        movieListPagerAdapter = MovieListPagerAdapter(supportFragmentManager)
+
+        showMovieListPage()
+    }
+
+    private fun showMovieListPage() {
+        movieListPagerAdapter.viewList.clear()
+        movieListPagerAdapter.addItem(MovieListFragment())
+        movieListPagerAdapter.addItem(MovieListFragment())
+        movieListPagerAdapter.addItem(MovieListFragment())
+
+        // 어댑터
+        movieListPager.adapter = movieListPagerAdapter
+    }
+
+    private fun showMovieDetailPage() {
+        movieListPagerAdapter.viewList.clear()
+        movieListPagerAdapter.addItem(MovieDetailFragment())
+
+        movieListPager.adapter = movieListPagerAdapter
+    }
+    // MovieListFragment 를 위한 ViewPagerAdapter
+    // ViewPager 내부를 차제하게 해주는 기본 클래스.
+    @SuppressLint("WrongConstant")
+    private inner class MovieListPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+
+        var viewList = arrayListOf<Fragment>()
+
+        fun addItem(newMovie : Fragment) {
+            viewList.add(newMovie)
+            notifyDataSetChanged()
+        }
+
+        override fun getCount(): Int {
+            return viewList.size
+        }
+
+        // Fragment제공
+        override fun getItem(position: Int): Fragment{
+            return viewList[position]
+        }
+    }
+
+    override fun onBtnSelected() {
+        showMovieDetailPage()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.nav_menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        when(requestCode) {
-            REQUESTCODE.ADD_NEWCOMMENT.value -> {
-                when(resultCode) {
-                    RESULTCODE.SAVE_NEWCOMMENT.value -> {
-                        var newMemoList : ArrayList<CommentDTO>? = arrayListOf()
-                        newMemoList?.add(data?.getParcelableExtra("newComment")!!)
-
-                        commentListAdapter.updateCommentList(newMemoList, UPDATECOMMENTLISTCODE.ADD.value)
-                    }
-                }
-            }
-        }
     }
 }

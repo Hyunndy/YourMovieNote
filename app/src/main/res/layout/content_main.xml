@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/app_bar_main"
+    android:id="@+id/main_fragment"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 뷰 페이저 -->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/movie_list_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_anchor="@+id/main_fragment"
+        app:layout_anchorGravity="center">
+    </androidx.viewpager.widget.ViewPager>
+
+</FrameLayout>

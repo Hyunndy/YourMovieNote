@@ -9,13 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CommentListView"></activity>
+        <activity
+            android:name=".testactivitiy"
+            android:label="@string/title_activity_testactivitiy"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".CommentListView" />
         <activity android:name=".NewCommentActivity" />
         <activity
-            android:name=".AddCommentActivity"
-            android:label="@string/title_activity_add_comment"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity">
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

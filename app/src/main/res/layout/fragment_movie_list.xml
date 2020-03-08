@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movie_list_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background"
+    tools:context=".Fragment.MovieListFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- 포스터 -->
+            <ImageView
+                android:id="@+id/movie_poster"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/image1" />
+
+            <TextView
+                android:id="@+id/movie_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/movie_poster"
+                android:layout_marginTop="30dp"
+                android:text="1. 군 도"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="25sp" />
+
+            <ImageView
+                android:id="@+id/movie_list_slider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/movie_title"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/home_slider1" />
+
+            <LinearLayout
+                android:id="@+id/movie_list_information"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/movie_list_slider"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/movie_reservation_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/movie_list_slider"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1.5"
+                    android:background="@drawable/rectangle_right_line"
+                    android:paddingRight="10dp"
+                    android:text="예매율 61.6%"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/movie_age_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/movie_list_slider"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/rectangle_right_line"
+                    android:text="15세 관람가"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/movie_release_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/movie_list_slider"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1.3"
+                    android:paddingStart="5dp"
+                    android:text="D-1"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/show_movie_detail_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/movie_list_information"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rectangle_radius_full"
+                android:text="상세보기"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </ScrollView>
+
+
+</FrameLayout>
