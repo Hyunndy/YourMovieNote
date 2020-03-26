@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- 계정 프로필 -->
+    <ImageView
+        android:id="@+id/comment_user_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"c
+        android:layout_marginTop="20dp"
+        android:src="@drawable/user1" />
+
+    <!-- 계정 아이디 -->
+    <TextView
+        android:id="@+id/comment_user_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/comment_user_profile"
+        android:text="guswlapdlzj"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <!-- 코멘트 등록 시간 -->
+    <TextView
+        android:id="@+id/comment_registered_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comment_user_id"
+        android:layout_alignLeft="@+id/comment_user_id"
+        android:layout_marginTop="2dp"
+        android:layout_toRightOf="@+id/comment_user_profile"
+        android:text="10"
+        android:textSize="10dp" />
+
+    <!-- 유저가 올린 평점 -->
+    <androidx.appcompat.widget.AppCompatRatingBar
+        android:id="@+id/comment_user_ratingBar"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/comment_registered_time"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/comment_registered_time" />
+
+    <!-- 한줄평 -->
+    <TextView
+        android:id="@+id/comment_detail_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/comment_registered_time"
+        android:layout_alignLeft="@+id/comment_registered_time"
+        android:layout_marginTop="10dp"
+        android:text="적당히 재밌다. 오랜만에 잠 안오는 영화 봤네요."
+        android:textColor="@android:color/black" />
+
+    <!-- 추천 -->
+    <TextView
+        android:id="@+id/comment_recommended"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comment_detail_text"
+        android:layout_alignLeft="@id/comment_registered_time"
+        android:layout_marginTop="5dp"
+        android:text="추천"
+        android:textColor="@android:color/black"
+        android:textSize="10dp" />
+
+    <!-- 추천 -->
+    <TextView
+        android:id="@+id/comment_recommended_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comment_detail_text"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="2dp"
+        android:layout_toRightOf="@+id/comment_recommended"
+        android:text="0"
+        android:textColor="@android:color/black" />
+
+    <!-- 추천 수 -->
+    <TextView
+        android:id="@+id/division"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comment_detail_text"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/comment_recommended_count"
+        android:text="|"
+        android:textSize="15dp" />
+
+    <!-- 신고하기 -->
+    <Button
+        android:id="@+id/comment_declaration_btn"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/comment_detail_text"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="2dp"
+        android:layout_toRightOf="@+id/division"
+        android:background="@android:color/transparent"
+        android:text="신고하기"
+        android:textSize="10dp" />
+</RelativeLayout>
