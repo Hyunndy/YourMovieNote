@@ -4,24 +4,20 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Layout
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.*
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.viewpager.widget.ViewPager
 import com.example.hyunndymovieapp.Fragment.MovieDetailFragment
 import com.example.hyunndymovieapp.Fragment.MovieListFragment
+import com.example.hyunndymovieapp.api.JSON_TYPE
+import com.example.hyunndymovieapp.api.Movie
+import com.example.hyunndymovieapp.api.MovieList
+import com.example.hyunndymovieapp.api.VolleyService
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -47,6 +43,9 @@ enum class UPDATECOMMENTLISTCODE(val value:Int){
     UPDATE(3000)
 }
 
+var movieList = ArrayList<Movie>()
+var movieFragmentList = ArrayList<MovieListFragment>()
+
 class MainActivity : AppCompatActivity(), MovieListFragment.OnBtnSelectedListner, NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var movieListPager : ViewPager
@@ -62,6 +61,7 @@ class MainActivity : AppCompatActivity(), MovieListFragment.OnBtnSelectedListner
         createNavigationBar()
     }
 
+
     private fun createNavigationBar() {
 
         nav_view.setNavigationItemSelectedListener(this)
@@ -74,7 +74,6 @@ class MainActivity : AppCompatActivity(), MovieListFragment.OnBtnSelectedListner
          drawer_layout.addDrawerListener(toggle)
          toggle.syncState()
     }
-
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
@@ -105,18 +104,45 @@ class MainActivity : AppCompatActivity(), MovieListFragment.OnBtnSelectedListner
         // 뷰페이저 Adapter Init
         movieListPagerAdapter = MovieListPagerAdapter(supportFragmentManager)
 
-        showMovieListPage()
+        // 영화 목록 API 받아오기
+        VolleyService.loadMovieListInfo(this) { result ->
+            if(result != null) {
+                Log.d("test1", "createMovieListPager의 result${result.size}")
+                movieList.clear()
+                movieList.addAll(result)
+
+                Log.d("test1", "createMovieListPager에서의 사이즈 ${movieList.size}")
+
+                showMovieListPage()
+            }
+        }
     }
 
     private fun showMovieListPage() {
         movieListPagerAdapter.viewList.clear()
-        movieListPagerAdapter.addItem(MovieListFragment())
-        movieListPagerAdapter.addItem(MovieListFragment())
-        movieListPagerAdapter.addItem(MovieListFragment())
 
+        // API에서 받아온 정보 세팅
+        var idx = 0
+        while(idx < movieList.size) {
+            Log.d("test1", "${idx}")
+
+            var newFragment = MovieListFragment()
+
+            // 번들로 던진다.
+            var bundle = Bundle()
+            bundle.putParcelable("movieInfo", movieList[idx])
+            newFragment.arguments = bundle
+
+            movieListPagerAdapter.viewList.add(newFragment)
+
+            idx++
+        }
+
+        movieListPagerAdapter.notifyDataSetChanged()
         // 어댑터
         movieListPager.adapter = movieListPagerAdapter
     }
+
 
     private fun showMovieDetailPage() {
         movieListPagerAdapter.viewList.clear()

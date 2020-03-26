@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="5dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/image1" />
 
@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/movie_poster"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:text="1. 군 도"
                 android:textAlignment="center"
                 android:textColor="@color/colorWhite"
