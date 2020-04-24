@@ -11,7 +11,7 @@
 
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment"
+        android:id="@+id/mainFragment"
         android:name="com.example.hyunndymovieapp.Fragment.ViewPagerFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"

@@ -9,10 +9,6 @@ import retrofit2.http.QueryMap
 REST 요청을 위한 인터페이스와 빌더
  */
 
-// Movie API 서비스를 위한 키
-const val API_KEY = "b9e3a985b4c7aebdc3698d3f55d45d0e" // 부여받은 API 키
-const val BASE_URL = "https://api.themoviedb.org/3/"
-
 /*
 Retrofit의 @GET 어노테이션으로 HTTP의 GET 요청으로 JSON을 읽어온다.
  */

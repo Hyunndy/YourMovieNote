@@ -19,7 +19,7 @@
 
             <!-- 포스터 -->
             <ImageView
-                android:id="@+id/movie_poster"
+                android:id="@+id/detailPoster"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -28,10 +28,10 @@
                 android:src="@drawable/image1" />
 
             <TextView
-                android:id="@+id/movie_title"
+                android:id="@+id/detailTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/movie_poster"
+                android:layout_below="@+id/detailPoster"
                 android:layout_marginTop="10dp"
                 android:text="1. 군 도"
                 android:textAlignment="center"
@@ -42,7 +42,7 @@
                 android:id="@+id/movie_list_slider"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/movie_title"
+                android:layout_below="@+id/detailTitle"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/home_slider1" />
 
@@ -81,7 +81,7 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/movie_release_date"
+                    android:id="@+id/detailReleaseDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/movie_list_slider"

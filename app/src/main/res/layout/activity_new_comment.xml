@@ -8,7 +8,7 @@
 
     <!-- 영화 타이틀 -->
     <TextView
-        android:id="@+id/movie_title"
+        android:id="@+id/detailTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="군도"
@@ -21,12 +21,12 @@
 
     <!-- 영화 관람 등급 -->
     <ImageView
-        android:id="@+id/movie_age_icon"
+        android:id="@+id/detailAgeIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/movie_title"
+        android:layout_toRightOf="@+id/detailTitle"
         android:src="@drawable/ic_15"
-        android:layout_alignTop="@id/movie_title"
+        android:layout_alignTop="@id/detailTitle"
         android:layout_marginLeft="10dp"/>
 
     <!-- 구분선  -->
@@ -36,7 +36,7 @@
         android:layout_height="2dp"
         android:background="#673AB7"
         android:orientation="vertical"
-        android:layout_below="@+id/movie_title"
+        android:layout_below="@+id/detailTitle"
         android:layout_marginTop="5dp"/>
 
     <!-- 별점 -->

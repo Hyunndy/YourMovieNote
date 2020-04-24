@@ -1,7 +1,7 @@
 package com.example.hyunndymovieapp.api
 
+import com.example.hyunndymovieapp.util.MOVIEAPI_URL
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
@@ -19,7 +19,7 @@ class RestApi {
     // 3. 이렇게 해서 최종적으로 요청을 보내고 영화 정보를 가져오는 getMovieListRetrofit()함수가 구성되었다.
     init{
         val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(MOVIEAPI_URL)
             .addConverterFactory(MoshiConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory()) // (1) 코루틴을 사용하는 경우
             .build()

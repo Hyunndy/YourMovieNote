@@ -17,7 +17,8 @@ class MovieManager(private val api: RestApi = RestApi()) {
                 it.title,
                 it.release_date,
                 it.poster_path,
-                it.overview
+                it.overview,
+                it.genre_ids
             )
         }
         return MovieList(response.page, list)

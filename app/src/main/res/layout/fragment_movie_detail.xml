@@ -24,7 +24,7 @@
 
             <!-- 포스터 -->
             <ImageView
-                android:id="@+id/movie_poster"
+                android:id="@+id/detailPoster"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -37,13 +37,13 @@
 
             <!-- 영화 제목 -->
             <TextView
-                android:id="@+id/movie_title"
+                android:id="@+id/detailTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="50dp"
-                android:layout_toRightOf="@+id/movie_poster"
+                android:layout_toRightOf="@+id/detailPoster"
                 android:text="군도"
                 android:textColor="@color/colorWhite"
                 android:textSize="30sp"
@@ -52,24 +52,24 @@
 
             <!-- 관람 등급 -->
             <ImageView
-                android:id="@+id/movie_age_icon"
+                android:id="@+id/detailAgeIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@id/movie_title"
+                android:layout_alignTop="@id/detailTitle"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/movie_title"
+                android:layout_toRightOf="@+id/detailTitle"
                 android:src="@drawable/ic_15" />
 
             <!-- 개봉일 -->
             <TextView
-                android:id="@+id/movie_release_date"
+                android:id="@+id/detailReleaseDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/movie_title"
+                android:layout_below="@id/detailTitle"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/movie_poster"
+                android:layout_toRightOf="@+id/detailPoster"
                 android:text="2019.03.08"
                 android:textColor="@color/colorWhite"
                 android:textSize="25dp"
@@ -77,41 +77,30 @@
 
             <!-- 장르 -->
             <TextView
-                android:id="@+id/movie_genre"
+                android:id="@+id/detailGenre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/movie_release_date"
+                android:layout_below="@id/detailReleaseDate"
                 android:layout_marginLeft="30dp"
-                android:layout_toRightOf="@+id/movie_poster"
+                android:layout_toRightOf="@+id/detailPoster"
                 android:text="액션"
                 android:textColor="@color/colorWhite"
                 android:textSize="20dp"
                 android:textStyle="normal" />
 
             <!--런타임 -->
-            <TextView
-                android:id="@+id/movie_runtime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@id/movie_genre"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/movie_genre"
-                android:text="137분"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp"
-                android:textStyle="normal" />
 
             <!-- 좋아요 -->
             <ImageButton
                 android:id="@+id/movie_like_btn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_below="@id/movie_genre"
+                android:layout_below="@id/detailGenre"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="18dp"
-                android:layout_toEndOf="@+id/movie_poster"
+                android:layout_toEndOf="@+id/detailPoster"
                 android:background="@android:color/transparent"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/likeebtn_states" />
@@ -169,6 +158,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/moveInfo_layout">
 
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -202,7 +192,6 @@
                     app:layout_constraintTop_toBottomOf="@id/advance_rate" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -222,7 +211,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <RatingBar
-                    android:id="@+id/grade_ratingBar"
+                    android:id="@+id/detailRatingbar"
                     style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -239,7 +228,7 @@
                     android:layout_marginTop="15dp"
                     android:text="0.0"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/grade_ratingBar"
+                    app:layout_constraintStart_toEndOf="@+id/detailRatingbar"
                     app:layout_constraintTop_toBottomOf="@id/grade_rate" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -309,7 +298,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/movie_story_detail"
+                android:id="@+id/detailOverView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -513,12 +502,13 @@
                 android:src="@drawable/ic_kakao" />
             <!-- 예매하기  -->
             <Button
+                android:id="@+id/serachBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:background="@color/colorOrange"
-                android:text="예매하기"
+                android:text="스트리밍검색"
                 android:textAlignment="center"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp"

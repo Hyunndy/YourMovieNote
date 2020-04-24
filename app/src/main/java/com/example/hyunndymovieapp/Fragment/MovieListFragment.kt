@@ -1,8 +1,6 @@
 package com.example.hyunndymovieapp.Fragment
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +8,9 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 
 import com.example.hyunndymovieapp.R
+import com.example.hyunndymovieapp.api.MovieGenre
 import com.example.hyunndymovieapp.api.MovieItem
-import com.example.hyunndymovieapp.util.inflate
 import kotlinx.android.synthetic.main.fragment_movie_list.*
-import java.lang.ClassCastException
 
 /* ----------------------------------------------------------------------------------------------
 작성일: 20.03.07
@@ -27,34 +24,24 @@ ViewModel로 처리할 수 없는 이벤트를 전달해야 할 경우 프래그
 
 class MovieListFragment : Fragment() {
 
-    companion object {
-        fun getInstance(movieInfo : MovieItem?) : Fragment {
+    private var listIdx : Int = 0
 
-            // 여기서 movelist그대로 던지고
+    companion object {
+        fun getInstance(movieInfo : MovieItem?, Idx : Int) : Fragment {
+
             val args = Bundle()
             args.putParcelable("movieInfo", movieInfo)
 
             val fragment = MovieListFragment()
-            Log.d("TEST", "컴패니언오브젝트")
             fragment.arguments = args
+            fragment.listIdx = Idx
 
             return fragment
         }
     }
 
-    var mCallback : OnBtnSelectedListner? = null
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        mCallback = context as? OnBtnSelectedListner
-        if(mCallback == null) {
-            throw ClassCastException("씨발")
-        }
-    }
-
     interface OnBtnSelectedListner {
-        fun onBtnSelected()
+        fun onBtnSelected(listIdx : Int)
     }
 
     override fun onCreateView(
@@ -66,41 +53,40 @@ class MovieListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       show_movie_detail_btn!!.setOnClickListener {
-           mCallback?.onBtnSelected()
-       }
+        try{
+            val btnListner = context as OnBtnSelectedListner
+            show_movie_detail_btn!!.setOnClickListener {
+                btnListner.onBtnSelected(listIdx)
+            }
+        } catch (e : Exception) {
+
+        }
 
         //@test
         val movieInfo = arguments?.getParcelable<MovieItem>("movieInfo")
-        setInfoFromAPI(movieInfo?.title, movieInfo?.poster_path)
+        setInfoFromAPI(movieInfo?.title, movieInfo?.release_date, movieInfo?.poster_path, movieInfo?.genre_ids)
 
     }
 
+    fun setInfoFromAPI(title:String?, date:String?, url:String?, genre : List<Int>?) {
 
-
-    //@HYEONJIY: 영화API 에서 불러온 이미지들을 세팅함.
-    //@test
-    //fun setInfoFromAPI(url:String?, title:String?, date:String?, reservation:Float?, grade:Int?) {
-    fun setInfoFromAPI(title:String?, url:String?) {
-        Log.d("test1", "Fragment의 setInfoFromAPI")
-
-        if(isAdded)
-        {
-            //포스터 URL
-            //Glide.with(this).asBitmap().load(url).into(movie_poster)
-
-            // @test
-            Glide.with(this).asBitmap().load("https://image.tmdb.org/t/p/w500/${url}").into(movie_poster)
+            Glide.with(this).asBitmap().load("https://image.tmdb.org/t/p/w500/${url}").into(detailPoster)
 
             // 타이틀
-            movie_title.text = title
+            detailTitle.text = title
             // 개봉일
-           // movie_release_date.text = date
+            detailReleaseDate.text = date
             // 예매율
             //movie_reservation_value.text = reservation.toString()
             // 관람 가능 연령
-           // movie_age_rating.text = grade.toString()
+            var tempgenre = ""
+        if (genre != null) {
+            for(id in genre) {
+                tempgenre += (MovieGenre[id] + " ")
+            }
+        }
+        movie_age_rating.text = tempgenre
         }
     }
-}
+
 

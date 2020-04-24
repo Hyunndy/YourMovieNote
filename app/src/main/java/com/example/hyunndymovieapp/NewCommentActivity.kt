@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.hyunndymovieapp.comment.CommentDTO
-import com.example.hyunndymovieapp.util.TimeHelper
+import com.example.hyunndymovieapp.util.RESULTED
 import kotlinx.android.synthetic.main.activity_new_comment.*
 
 /* ----------------------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ class NewCommentActivity : AppCompatActivity() {
 
             var intent = Intent()
             intent.putExtra("newComment", newComment)
-            setResult(RESULTCODE.SAVE_NEWCOMMENT.value, intent)
+            setResult(RESULTED.SAVE_COMMENT.value, intent)
             Toast.makeText(applicationContext, "메모가 저장되었습니다.", Toast.LENGTH_LONG).show()
             finish()
         }
@@ -46,7 +46,7 @@ class NewCommentActivity : AppCompatActivity() {
         new_comment_delete_btn.setOnClickListener {
 
             // 안보내기
-            setResult(RESULTCODE.DELETE_NEWCOMMENT.value)
+            setResult(RESULTED.DELETE_COMMENT.value)
             Toast.makeText(applicationContext, "메모가 저장이 취소되고 그냥 돌아갑니다.", Toast.LENGTH_LONG).show()
             finish()
         }

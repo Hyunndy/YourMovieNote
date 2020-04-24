@@ -1,5 +1,6 @@
 package com.example.hyunndymovieapp.api
 
+import android.graphics.Movie
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
@@ -16,8 +17,9 @@ data class MovieItem(
     val vote_average: Float,
     val title: String,
     val release_date: String,
-    val poster_path: String,
-    val overview: String?
+    val poster_path: String?,
+    val overview: String?,
+    val genre_ids : List<Int>?
 ) : Parcelable {
 
 }
@@ -26,3 +28,6 @@ data class MovieItem(
 data class MovieList(
     var page: Int?,
     val results: List<MovieItem>) : Parcelable {}
+
+val MovieGenre = hashMapOf(28 to "액션", 12 to "모험", 16 to "애니메이션", 35 to "코미디", 80 to "범죄", 99 to "다큐멘터리", 18 to "드라마", 10751 to "가족", 14 to "판타지", 36 to "역사", 27 to "공포", 10402 to "음악", 9648 to "미스터리",
+10749 to "로맨스", 878 to "SF", 10770 to "TV 영화", 53 to "스릴러", 10752 to "전쟁", 37 to "서부")

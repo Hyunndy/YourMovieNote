@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hyunndymovieapp.R
-import com.example.hyunndymovieapp.UPDATECOMMENTLISTCODE
+import com.example.hyunndymovieapp.util.CHANGECOMMENTLIST
 import com.example.hyunndymovieapp.util.TimeHelper
 import com.example.hyunndymovieapp.util.inflate
 import kotlinx.android.synthetic.main.comment_detail.view.*
@@ -39,10 +39,10 @@ class CommentRecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>
     fun updateCommentList(newCommentList : ArrayList<CommentDTO>?, updateCode : Int) {
 
         when(updateCode) {
-            UPDATECOMMENTLISTCODE.ADD.value -> {
+            CHANGECOMMENTLIST.ADD.value -> {
                 commentList.add(newCommentList!![0])
             }
-            UPDATECOMMENTLISTCODE.UPDATE.value -> {
+            CHANGECOMMENTLIST.UPDATE.value -> {
                 commentList.clear()
                 commentList = newCommentList!!
             }

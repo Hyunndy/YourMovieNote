@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hyunndymovieapp.comment.CommentDTO
 import com.example.hyunndymovieapp.comment.CommentRecyclerViewAdapter
+import com.example.hyunndymovieapp.util.CHANGECOMMENTLIST
 import kotlinx.android.synthetic.main.activity_comment_list_view.*
 import java.util.ArrayList
 
@@ -34,6 +35,6 @@ class CommentListView : AppCompatActivity() {
     private fun getCommentList(){
         var commentList:ArrayList<CommentDTO>? = intent.getParcelableArrayListExtra("commentList")
 
-        commentListAdapter.updateCommentList(commentList, UPDATECOMMENTLISTCODE.UPDATE.value)
+        commentListAdapter.updateCommentList(commentList, CHANGECOMMENTLIST.UPDATE.value)
     }
 }

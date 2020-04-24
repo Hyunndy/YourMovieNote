@@ -14,10 +14,5 @@ class MovieListAdapter (activity: FragmentActivity, val itemsCount: Int, private
 
     override fun getItemCount(): Int = itemsCount
 
-    override fun createFragment(position: Int): Fragment {
-
-        Log.d("TEST", "여기들어오는거맞나요..?")
-        return MovieListFragment.getInstance(movieList?.results?.get(position))//BlankFragment2.getInstance(movieList?.results?.get(position))//MovieListFragment()//
-    }
-
+    override fun createFragment(position: Int): Fragment = MovieListFragment.getInstance(movieList?.results?.get(position), position)
 }

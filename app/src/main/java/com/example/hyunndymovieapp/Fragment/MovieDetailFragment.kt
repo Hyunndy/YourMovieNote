@@ -1,6 +1,5 @@
 package com.example.hyunndymovieapp.Fragment
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -11,13 +10,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.hyunndymovieapp.*
+import com.example.hyunndymovieapp.api.MovieItem
 
 import com.example.hyunndymovieapp.comment.CommentDTO
 import com.example.hyunndymovieapp.comment.CommentRecyclerViewAdapter
-import com.example.hyunndymovieapp.util.inflate
+import com.example.hyunndymovieapp.util.*
 import kotlinx.android.synthetic.main.fragment_movie_detail.*
-import kotlinx.android.synthetic.main.fragment_movie_detail.view.*
+import kotlinx.android.synthetic.main.fragment_movie_detail.detailPoster
+import kotlinx.android.synthetic.main.fragment_movie_detail.detailReleaseDate
+import kotlinx.android.synthetic.main.fragment_movie_detail.detailTitle
 
 /* ----------------------------------------------------------------------------------------------
 작성일: 20.03.07
@@ -28,6 +31,8 @@ import kotlinx.android.synthetic.main.fragment_movie_detail.view.*
 
 class MovieDetailFragment : Fragment() {
 
+    private var movieInfo : MovieItem? = null
+
     // 좋아요/싫어요
     var likeCount = 0
     var dislikeCount = 0
@@ -35,19 +40,47 @@ class MovieDetailFragment : Fragment() {
     // 어뎁터
     var commentListAdapter = CommentRecyclerViewAdapter()
 
+    companion object {
+        fun getInstance(movieInfo : MovieItem?) : Fragment {
+
+            val args = Bundle()
+            args.putParcelable("movieInfo", movieInfo)
+
+            val fragment = MovieDetailFragment()
+            fragment.arguments = args
+
+            return fragment
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return container?.inflate(R.layout.fragment_movie_detail)
-    }
+    ): View?  = container?.inflate(R.layout.fragment_movie_detail)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        movieInfo = arguments?.getParcelable<MovieItem>("movieInfo")
+        setInfoFromAPI(movieInfo?.title, movieInfo?.release_date, movieInfo?.poster_path, movieInfo?.overview, movieInfo?.vote_average)
+
         setCommentlist()
         setBtnListener()
+    }
+
+    private fun setInfoFromAPI(title:String?, date:String?, url:String?, overview:String?, ratingNum : Float?) {
+
+        Glide.with(this).asBitmap().load("https://image.tmdb.org/t/p/w500/${url}").into(detailPoster)
+
+        // 타이틀
+        detailTitle.text = title
+        // 개봉일
+        detailReleaseDate.text = date
+        // 줄거리
+        detailOverView.text = overview
+
+        detailRatingbar.rating = ratingNum!!.div(2)
     }
 
 
@@ -61,10 +94,19 @@ class MovieDetailFragment : Fragment() {
 
     private fun setBtnListener(){
 
+        serachBtn.setOnClickListener {
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(SEARCH_URL+movieInfo?.title)
+            )
+
+            startActivity(intent)
+        }
+
         // 작성하기
         new_comment_btn.setOnClickListener {
             Toast.makeText(activity, "작성하기 버튼이 눌렸습니다.", Toast.LENGTH_LONG).show()
-            startActivityForResult(Intent(activity, NewCommentActivity::class.java), REQUESTCODE.ADD_NEWCOMMENT.value)
+            startActivityForResult(Intent(activity, NewCommentActivity::class.java), REQUEST.ADD_COMMENT.value)
         }
 
         // 모두보기
@@ -111,13 +153,13 @@ class MovieDetailFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         when(requestCode) {
-            REQUESTCODE.ADD_NEWCOMMENT.value -> {
+            REQUEST.ADD_COMMENT.value -> {
                 when(resultCode) {
-                    RESULTCODE.SAVE_NEWCOMMENT.value -> {
-                        var newMemoList : ArrayList<CommentDTO>? = arrayListOf()
+                    RESULTED.SAVE_COMMENT.value -> {
+                        val newMemoList : ArrayList<CommentDTO>? = arrayListOf()
                         newMemoList?.add(data?.getParcelableExtra("newComment")!!)
 
-                        commentListAdapter.updateCommentList(newMemoList, UPDATECOMMENTLISTCODE.ADD.value)
+                        commentListAdapter.updateCommentList(newMemoList, CHANGECOMMENTLIST.ADD.value)
                     }
                 }
             }
