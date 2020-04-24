@@ -15,6 +15,7 @@ import com.example.hyunndymovieapp.*
 
 import com.example.hyunndymovieapp.comment.CommentDTO
 import com.example.hyunndymovieapp.comment.CommentRecyclerViewAdapter
+import com.example.hyunndymovieapp.util.inflate
 import kotlinx.android.synthetic.main.fragment_movie_detail.*
 import kotlinx.android.synthetic.main.fragment_movie_detail.view.*
 
@@ -34,46 +35,40 @@ class MovieDetailFragment : Fragment() {
     // 어뎁터
     var commentListAdapter = CommentRecyclerViewAdapter()
 
-    // 뷰
-    private lateinit var fragmentView : View
-
-    companion object{
-        val MovieDetailFragment = MovieDetailFragment()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        return container?.inflate(R.layout.fragment_movie_detail)
+    }
 
-        fragmentView = LayoutInflater.from(activity).inflate(R.layout.fragment_movie_detail, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         setCommentlist()
         setBtnListener()
-
-        return fragmentView
     }
 
 
     private fun setCommentlist(){
-        fragmentView.comment_list_layout.adapter = commentListAdapter
-        fragmentView.comment_list_layout.layoutManager = LinearLayoutManager(activity)
+        comment_list_layout.adapter = commentListAdapter
+        comment_list_layout.layoutManager = LinearLayoutManager(activity)
 
         // 줄 사이에 구분선 추가
-        fragmentView.comment_list_layout.addItemDecoration(DividerItemDecoration(activity, 1))
+        comment_list_layout.addItemDecoration(DividerItemDecoration(activity, 1))
     }
 
     private fun setBtnListener(){
 
         // 작성하기
-        fragmentView.new_comment_btn.setOnClickListener {
+        new_comment_btn.setOnClickListener {
             Toast.makeText(activity, "작성하기 버튼이 눌렸습니다.", Toast.LENGTH_LONG).show()
             startActivityForResult(Intent(activity, NewCommentActivity::class.java), REQUESTCODE.ADD_NEWCOMMENT.value)
         }
 
         // 모두보기
-        fragmentView.show_all_comment_btn.setOnClickListener {
+        show_all_comment_btn.setOnClickListener {
             Toast.makeText(activity, "모두보기 버튼이 눌렸습니다.", Toast.LENGTH_LONG).show()
             //묶어서 보내기
             var intent = Intent(activity, CommentListView::class.java)
@@ -82,33 +77,33 @@ class MovieDetailFragment : Fragment() {
         }
 
         // 좋아요버튼
-        fragmentView.movie_like_btn.setOnClickListener {
-            if(fragmentView.movie_like_btn.isSelected) return@setOnClickListener
+            movie_like_btn.setOnClickListener {
+            if(movie_like_btn.isSelected) return@setOnClickListener
 
-            if(fragmentView.movie_dislike_btn.isSelected) {
-                fragmentView.movie_dislike_btn.isSelected = false
+            if(movie_dislike_btn.isSelected) {
+                movie_dislike_btn.isSelected = false
                 dislikeCount--
                 movie_dislike_count.text = dislikeCount.toString()
             }
 
             likeCount++
-            fragmentView.movie_like_count.text = likeCount.toString()
-            fragmentView.movie_like_btn.isSelected = true
+            movie_like_count.text = likeCount.toString()
+            movie_like_btn.isSelected = true
         }
 
         // 싫어요버튼
-        fragmentView.movie_dislike_btn.setOnClickListener{
-            if(fragmentView.movie_dislike_btn.isSelected) return@setOnClickListener
+            movie_dislike_btn.setOnClickListener{
+            if(movie_dislike_btn.isSelected) return@setOnClickListener
 
-            if(fragmentView.movie_like_btn.isSelected) {
-                fragmentView.movie_like_btn.isSelected = false
+            if(movie_like_btn.isSelected) {
+                movie_like_btn.isSelected = false
                 likeCount--
-                fragmentView.movie_like_count.text = likeCount.toString()
+                movie_like_count.text = likeCount.toString()
             }
 
             dislikeCount++
-            fragmentView.movie_dislike_count.text = dislikeCount.toString()
-            fragmentView.movie_dislike_btn.isSelected = true
+            movie_dislike_count.text = dislikeCount.toString()
+            movie_dislike_btn.isSelected = true
         }
     }
 

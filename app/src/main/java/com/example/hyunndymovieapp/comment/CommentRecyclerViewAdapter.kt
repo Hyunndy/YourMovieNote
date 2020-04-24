@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hyunndymovieapp.R
 import com.example.hyunndymovieapp.UPDATECOMMENTLISTCODE
 import com.example.hyunndymovieapp.util.TimeHelper
+import com.example.hyunndymovieapp.util.inflate
 import kotlinx.android.synthetic.main.comment_detail.view.*
 import org.w3c.dom.Comment
 
@@ -55,9 +56,7 @@ class CommentRecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.comment_detail, parent, false)
-
-        return CustomViewHolder(view)
+        return CustomViewHolder(parent.inflate(R.layout.comment_detail))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

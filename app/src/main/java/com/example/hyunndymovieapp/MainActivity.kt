@@ -1,6 +1,5 @@
 package com.example.hyunndymovieapp
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,16 +9,19 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
-import androidx.fragment.app.*
-import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.example.hyunndymovieapp.Fragment.MovieDetailFragment
+import com.example.hyunndymovieapp.Fragment.MovieListAdapter
 import com.example.hyunndymovieapp.Fragment.MovieListFragment
-import com.example.hyunndymovieapp.api.JSON_TYPE
-import com.example.hyunndymovieapp.api.Movie
-import com.example.hyunndymovieapp.api.MovieList
-import com.example.hyunndymovieapp.api.VolleyService
+import com.example.hyunndymovieapp.api.*
 import com.google.android.material.navigation.NavigationView
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 /* ----------------------------------------------------------------------------------------------
 작성일: 20.03.05
@@ -43,14 +45,35 @@ enum class UPDATECOMMENTLISTCODE(val value:Int){
     UPDATE(3000)
 }
 
-var movieList = ArrayList<Movie>()
+//@test2
+
+private lateinit var toolbar : androidx.appcompat.widget.Toolbar
+
+
+
+lateinit var movieItemList : List<MovieItem>
+//var theMovieList : MovieList? = null
 var movieFragmentList = ArrayList<MovieListFragment>()
 
 class MainActivity : AppCompatActivity(), MovieListFragment.OnBtnSelectedListner, NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var movieListPager : ViewPager
-    private lateinit var movieListPagerAdapter : MovieListPagerAdapter
-    private lateinit var toolbar : androidx.appcompat.widget.Toolbar
+    //@test
+    //lateinit var viewpager : ViewPager2
+    private val movieManager by lazy {MovieManager()}
+    protected var subscriptions = CompositeDisposable()
+    protected var job: Job? = null // (1) job변수선언
+
+    override fun onResume() {
+        super.onResume()
+        job = null // (2) 재개될 때 코루틴 제거
+    }
+
+    override fun onPause() {
+        super.onPause()
+        job?.cancel() // (3) 코루틴의 취소 및 제거
+        job = null
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,7 +101,7 @@ class MainActivity : AppCompatActivity(), MovieListFragment.OnBtnSelectedListner
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.nav_movie_list -> {
-                showMovieListPage()
+                //showMovieListPage()
             }
             R.id.nav_movie_API -> {
                 Toast.makeText(applicationContext, "우왕우왕", Toast.LENGTH_LONG).show()
@@ -99,77 +122,61 @@ class MainActivity : AppCompatActivity(), MovieListFragment.OnBtnSelectedListner
 
     private fun createMovieListPager() {
 
-        // 영화 목록 뷰페이저 Init
-        movieListPager = findViewById(R.id.movie_list_pager)
-        // 뷰페이저 Adapter Init
-        movieListPagerAdapter = MovieListPagerAdapter(supportFragmentManager)
-
-        // 영화 목록 API 받아오기
-        VolleyService.loadMovieListInfo(this) { result ->
-            if(result != null) {
-                Log.d("test1", "createMovieListPager의 result${result.size}")
-                movieList.clear()
-                movieList.addAll(result)
-
-                Log.d("test1", "createMovieListPager에서의 사이즈 ${movieList.size}")
-
-                showMovieListPage()
-            }
-        }
+        //requestMovie()
     }
 
-    private fun showMovieListPage() {
-        movieListPagerAdapter.viewList.clear()
-
-        // API에서 받아온 정보 세팅
-        var idx = 0
-        while(idx < movieList.size) {
-            Log.d("test1", "${idx}")
-
-            var newFragment = MovieListFragment()
-
-            // 번들로 던진다.
-            var bundle = Bundle()
-            bundle.putParcelable("movieInfo", movieList[idx])
-            newFragment.arguments = bundle
-
-            movieListPagerAdapter.viewList.add(newFragment)
-
-            idx++
-        }
-
-        movieListPagerAdapter.notifyDataSetChanged()
-        // 어댑터
-        movieListPager.adapter = movieListPagerAdapter
-    }
+   // private fun requestMovie(){
+//
+   //     // (1) 코루틴의 launch 빌더
+   //     job = GlobalScope.launch(Dispatchers.Main) {
+   //         try {
+   //             val param = mapOf(
+   //                 "page" to (theMovieList?.page).toString(),
+   //                 "api_key" to API_KEY,
+   //                 "sort_by" to "popularity.desc",
+   //                 "language" to "ko"
+   //             )
+//
+   //             val retrivedMovie = movieManager.getMovieList(param)
+   //             retrivedMovie.page = retrivedMovie.page?.plus(1)
+//
+   //             theMovieList = retrivedMovie
+   //             showMovieListPage()
+   //         } catch ( e: Throwable) {
+   //             Log.d("TEST", "오류납니다.")
+   //         }
+   //     }
+   // }
 
 
-    private fun showMovieDetailPage() {
-        movieListPagerAdapter.viewList.clear()
-        movieListPagerAdapter.addItem(MovieDetailFragment())
+   //private fun showMovieListPage() {
+   //    // 영화 목록 뷰페이저 Init
+   //    Log.d("TEST", "쇼무비리스트페이지.")
+   //    viewpager = findViewById(R.id.movieListViewPager)
+   //    // 뷰페이저 Adapter Init
+   //    viewpager.adapter  = MovieListAdapter(this, 5, theMovieList)
 
-        movieListPager.adapter = movieListPagerAdapter
-    }
-    // MovieListFragment 를 위한 ViewPagerAdapter
-    // ViewPager 내부를 차제하게 해주는 기본 클래스.
-    @SuppressLint("WrongConstant")
-    private inner class MovieListPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+   //    viewpager.run { adapter?.notifyDataSetChanged() }
+   //}
 
-        var viewList = arrayListOf<Fragment>()
 
-        fun addItem(newMovie : Fragment) {
-            viewList.add(newMovie)
-            notifyDataSetChanged()
-        }
+        // viewpager는 냅두고.... 새로운 fragment로 대체하면안되나?
+        /*
+    //disable swiping
+    mViewPager.beginFakeDrag();
 
-        override fun getCount(): Int {
-            return viewList.size
-        }
+    //enable swipi
+    mViewPager.endFakeDrag();
+     */
+        private fun showMovieDetailPage() {
 
-        // Fragment제공
-        override fun getItem(position: Int): Fragment{
-            return viewList[position]
-        }
+        //movieListPagerAdapter.viewList.clear()
+
+            // 여기를 지금 bundle던지는 애로 바꿔야된다.
+            //
+        //movieListPagerAdapter.addItem(MovieDetailFragment())
+
+        //movieListPager.adapter = movieListPagerAdapter
     }
 
     override fun onBtnSelected() {
@@ -179,13 +186,5 @@ class MainActivity : AppCompatActivity(), MovieListFragment.OnBtnSelectedListner
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.nav_menu_main, menu)
         return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
     }
 }
