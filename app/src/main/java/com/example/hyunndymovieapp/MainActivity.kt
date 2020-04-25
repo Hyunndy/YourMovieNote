@@ -35,8 +35,8 @@ class MainActivity : AppCompatActivity(), MovieListFragment.OnBtnSelectedListner
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-            setContentView(R.layout.activity_main)
-            createNavigationBar()
+        setContentView(R.layout.activity_main)
+        createNavigationBar()
     }
 
 

@@ -9,12 +9,21 @@
     android:layout_height="match_parent"
     tools:ignore="ExtraText">
 
+    <Chronometer
+        android:id="@+id/chron"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/mainFragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/mainFragment"
         android:name="com.example.hyunndymovieapp.Fragment.ViewPagerFragment"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="50dp"
         app:layout_anchor="@+id/main_frame"
         app:layout_anchorGravity="center"
         app:layout_constraintBottom_toBottomOf="parent"

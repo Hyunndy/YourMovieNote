@@ -52,6 +52,12 @@ open class ViewPagerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        //@test
+        // ViewModel 생성
+
+
         requestMovie(view)
     }
 
