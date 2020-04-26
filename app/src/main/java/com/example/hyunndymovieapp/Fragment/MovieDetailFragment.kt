@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -30,8 +31,10 @@ import kotlinx.android.synthetic.main.fragment_movie_detail.detailTitle
 ---------------------------------------------------------------------------------------------- */
 
 class MovieDetailFragment : Fragment() {
+    private lateinit var viewModel : MovieListViewModel
 
     private var movieInfo : MovieItem? = null
+    private var selectedIdx : Int = 0
 
     // 좋아요/싫어요
     var likeCount = 0
@@ -41,13 +44,14 @@ class MovieDetailFragment : Fragment() {
     var commentListAdapter = CommentRecyclerViewAdapter()
 
     companion object {
-        fun getInstance(movieInfo : MovieItem?) : Fragment {
-
-            val args = Bundle()
-            args.putParcelable("movieInfo", movieInfo)
+        //fun getInstance(movieInfo : MovieItem?, index : Int) : Fragment {
+        fun getInstance(index : Int) : Fragment {
+           //val args = Bundle()
+           //args.putParcelable("movieInfo", movieInfo)
 
             val fragment = MovieDetailFragment()
-            fragment.arguments = args
+            //fragment.arguments = args
+            fragment.selectedIdx = index
 
             return fragment
         }
@@ -62,7 +66,10 @@ class MovieDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        movieInfo = arguments?.getParcelable<MovieItem>("movieInfo")
+        viewModel = ViewModelProvider(requireActivity())[MovieListViewModel::class.java]
+        val movieList = viewModel.getMovieList()?.value
+        movieInfo = movieList?.results?.get(selectedIdx)
+        //movieInfo = arguments?.getParcelable<MovieItem>("movieInfo")
         setInfoFromAPI(movieInfo?.title, movieInfo?.release_date, movieInfo?.poster_path, movieInfo?.overview, movieInfo?.vote_average)
 
         setCommentlist()
@@ -152,16 +159,11 @@ class MovieDetailFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        when(requestCode) {
-            REQUEST.ADD_COMMENT.value -> {
-                when(resultCode) {
-                    RESULTED.SAVE_COMMENT.value -> {
-                        val newMemoList : ArrayList<CommentDTO>? = arrayListOf()
-                        newMemoList?.add(data?.getParcelableExtra("newComment")!!)
-
-                        commentListAdapter.updateCommentList(newMemoList, CHANGECOMMENTLIST.ADD.value)
-                    }
-                }
+        when {
+            requestCode == REQUEST.ADD_COMMENT.value && resultCode == RESULT.SAVE_COMMENT.value -> {
+                val newMemoList : ArrayList<CommentDTO>? = arrayListOf()
+                newMemoList?.add(data?.getParcelableExtra("newComment")!!)
+                commentListAdapter.updateCommentList(newMemoList, CHANGECOMMENTLIST.ADD.value)
             }
         }
     }

@@ -11,15 +11,24 @@ const val SEARCH_URL = "https://www.justwatch.com/kr/검색?q="
 
 enum class REQUEST(val value:Int){
     ADD_COMMENT(100),
+    LOGIN(200),
+    LOGOUT(300)
 }
 
-enum class RESULTED(val value:Int){
+enum class RESULT(val value:Int){
     SAVE_COMMENT(10),
-    DELETE_COMMENT(20)
+    DELETE_COMMENT(20),
+    SUCCESS_LOGIN(30),
+    SUCCESS_LOGOUT(40)
 }
 
 enum class CHANGECOMMENTLIST(val value:Int){
     ADD(1000),
     DELETE(2000),
     UPDATE(3000)
+}
+
+enum class USERSTATE(val value:Int) {
+    LOGIN(1),
+    LOGOUT(2)
 }
