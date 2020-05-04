@@ -50,26 +50,24 @@
                 android:textStyle="bold" />
 
 
-            <!-- 관람 등급 -->
-            <ImageView
-                android:id="@+id/detailAgeIcon"
+            <RatingBar
+                android:id="@+id/detailRatingbar"
+                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@id/detailTitle"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/detailTitle"
-                android:src="@drawable/ic_15" />
+                android:layout_below="@id/detailGenre"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="16dp"
+                android:layout_toEndOf="@+id/detailPoster" />
 
-            <!-- 개봉일 -->
             <TextView
                 android:id="@+id/detailReleaseDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/detailTitle"
-                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/detailPoster"
+                android:layout_toEndOf="@+id/detailPoster"
                 android:text="2019.03.08"
                 android:textColor="@color/colorWhite"
                 android:textSize="25dp"
@@ -88,195 +86,19 @@
                 android:textSize="20dp"
                 android:textStyle="normal" />
 
-            <!--런타임 -->
-
-            <!-- 좋아요 -->
-            <ImageButton
-                android:id="@+id/movie_like_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+            <TextView
+                android:id="@+id/grade_ratingBar_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/detailGenre"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="18dp"
-                android:layout_toEndOf="@+id/detailPoster"
-                android:background="@android:color/transparent"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/likeebtn_states" />
-
-            <!-- 좋아요 수 -->
-            <TextView
-                android:id="@+id/movie_like_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@id/movie_like_btn"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toEndOf="@id/movie_like_btn"
-                android:text="0"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <!-- 싫어요 -->
-            <ImageButton
-                android:id="@+id/movie_dislike_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignTop="@+id/movie_like_btn"
-                android:layout_marginStart="20dp"
-                android:layout_toEndOf="@+id/movie_like_count"
-                android:background="@android:color/transparent"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/dislikebtn_states" />
-
-            <!-- 싫어요 수 -->
-            <TextView
-                android:id="@+id/movie_dislike_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@id/movie_like_btn"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toEndOf="@id/movie_dislike_btn"
-                android:text="0"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_toEndOf="@id/detailRatingbar"
+                android:text="0.0"
                 android:textStyle="bold" />
 
         </RelativeLayout>
 
-        <!-- 관람 정보 -->
-        <LinearLayout
-            android:id="@+id/customerInfo_layout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/moveInfo_layout">
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/rectangle_right_line">
-
-                <!-- 관람 정보 - 예매율  -->
-                <TextView
-                    android:id="@+id/advance_rate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="예매율"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/advance_rate_detail"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/advance_rate_detail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="20dp"
-                    android:text="0위"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/advance_rate" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/rectangle_right_line">
-
-                <!-- 관람 정보 - 평점  -->
-                <TextView
-                    android:id="@+id/grade_rate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="평점"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <RatingBar
-                    android:id="@+id/detailRatingbar"
-                    style="?android:attr/ratingBarStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/grade_rate" />
-
-                <TextView
-                    android:id="@+id/grade_ratingBar_detail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="15dp"
-                    android:text="0.0"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/detailRatingbar"
-                    app:layout_constraintTop_toBottomOf="@id/grade_rate" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <!-- 관람 정보 - 누적관객수  -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/rectangle_right_line">
-
-                <TextView
-                    android:id="@+id/attendance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="누적관객수"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/attendance_detail"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/attendance_detail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="20dp"
-                    android:text="000명"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/attendance" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-
-        <!-- 구분선  -->
-        <LinearLayout
-            android:id="@+id/division"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#673AB7"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/customerInfo_layout"></LinearLayout>
-
-        <!-- 줄거리  -->
         <LinearLayout
             android:id="@+id/contents_layout"
             android:layout_width="match_parent"
@@ -284,7 +106,7 @@
             android:layout_marginLeft="5dp"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/division">
+            app:layout_constraintTop_toBottomOf="@+id/moveInfo_layout">
 
             <TextView
                 android:id="@+id/movie_story"
@@ -305,177 +127,6 @@
                 android:text="군도, 백성을 구하라! \n 양반과 탐관오리들의 착취가 극에 달했던 조선 철종 13년. \n힘 없는 백성의 편이 되어 세상을 바로잡고자 하는 의적떼인 군도(群盜), 지리산 추설이 있었다. \n\n쌍칼 도치 vs 백성의 적 조윤잦은 자연재해, 기근과 관의 횡포까지 겹쳐 백성들의 삶이 날로 피폐해져 가는 사이, 나주 대부호의 서자로 조선 최고의 무관 출신인 조윤은 극악한 수법으로 양민들을 수탈, 삼남지방 최고의 대부호로 성장한다. \n\n한편 소, 돼지를 잡아 근근이 살아가던 천한 백정 돌무치는 죽어도 잊지 못할 끔찍한 일을 당한 뒤 군도에 합류. 지리산 추설의 신 거성(新 巨星) 도치로 거듭난다.뭉치면 백성, 흩어지면 도적!망할 세상을 뒤집기 위해, 백성이 주인인 새 세상을 향해 도치를 필두로 한 군도는 백성의 적, 조윤과 한 판 승부를 시작하는데..." />
         </LinearLayout>
 
-        <!-- 구분선  -->
-        <LinearLayout
-            android:id="@+id/division2"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#673AB7"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/contents_layout">
-
-        </LinearLayout>
-
-        <!-- 감독/출연  -->
-        <RelativeLayout
-            android:id="@+id/crew_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/division2">
-
-            <TextView
-                android:id="@+id/director"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/crew"
-                android:text="감독"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/director_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/director"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="10dp"
-                android:layout_toRightOf="@+id/director"
-                android:text="윤종빈"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/actors"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/director"
-                android:text="출연"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/actors_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/actors"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="10dp"
-                android:layout_toRightOf="@+id/actors"
-                android:text="하정우(도치), 강동원(조윤)"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/crew"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="감독/출연"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <!-- 구분선  -->
-        <LinearLayout
-            android:id="@+id/division3"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#673AB7"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/crew_layout"></LinearLayout>
-
-        <!-- 한줄평  -->
-        <LinearLayout
-            android:id="@+id/comment_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/division3">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-
-                app:layout_constraintStart_toStartOf="parent">
-
-                <TextView
-                    android:id="@+id/comment_detail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerInParent="true"
-                    android:text="한줄평"
-                    android:layout_marginLeft="5dp"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/new_comment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_toLeftOf="@+id/new_comment_btn"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_review_selected" />
-
-                <Button
-                    android:id="@+id/new_comment_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginRight="5dp"
-                    android:background="@android:color/transparent"
-                    android:text="작성하기"
-                    android:textColor="@color/colorOrange"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
-
-            <!-- 한줄평 리스트뷰 -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/comment_list_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:scrollbars="none"
-                app:layout_constraintTop_toBottomOf="@id/comment_layout"></androidx.recyclerview.widget.RecyclerView>
-
-            <!-- 버튼 -->
-            <Button
-                android:id="@+id/show_all_comment_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/rectangle_four_line"
-                android:text="모두보기"
-                android:textColor="@color/colorOrange"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/comment_list_layout" />
-        </LinearLayout>
-
-
-        <!-- 구분선  -->
-        <LinearLayout
-            android:id="@+id/division4"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#673AB7"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/comment_layout"></LinearLayout>
 
         <!-- 페북/카톡/예매하기  -->
         <LinearLayout
@@ -484,26 +135,16 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="3"
-            app:layout_constraintTop_toBottomOf="@id/division4">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contents_layout">
 
             <!-- 페북  -->
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_facebook" />
             <!-- 카톡  -->
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_kakao" />
             <!-- 예매하기  -->
             <Button
                 android:id="@+id/serachBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"

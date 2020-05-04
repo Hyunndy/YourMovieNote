@@ -59,51 +59,10 @@
         android:textColor="@android:color/black" />
 
     <!-- 추천 -->
-    <TextView
-        android:id="@+id/comment_recommended"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/comment_detail_text"
-        android:layout_alignLeft="@id/comment_registered_time"
-        android:layout_marginTop="5dp"
-        android:text="추천"
-        android:textColor="@android:color/black"
-        android:textSize="10dp" />
 
     <!-- 추천 -->
-    <TextView
-        android:id="@+id/comment_recommended_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/comment_detail_text"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="2dp"
-        android:layout_toRightOf="@+id/comment_recommended"
-        android:text="0"
-        android:textColor="@android:color/black" />
 
     <!-- 추천 수 -->
-    <TextView
-        android:id="@+id/division"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/comment_detail_text"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/comment_recommended_count"
-        android:text="|"
-        android:textSize="15dp" />
 
     <!-- 신고하기 -->
-    <Button
-        android:id="@+id/comment_declaration_btn"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_below="@+id/comment_detail_text"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="2dp"
-        android:layout_toRightOf="@+id/division"
-        android:background="@android:color/transparent"
-        android:text="신고하기"
-        android:textSize="10dp" />
 </RelativeLayout>

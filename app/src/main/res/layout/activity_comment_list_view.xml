@@ -1,144 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CommentListView">
+    tools:context=".movienote.MovieNoteActivity">
 
     <!-- 영화 타이틀 -->
-    <TextView
-        android:id="@+id/detailTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="군도"
-        android:textSize="25sp"
-        android:textStyle="bold" />
 
-    <!-- 영화 관람 등급 -->
+    <!-- 한줄평  -->
+
     <ImageView
-        android:id="@+id/detailAgeIcon"
+        android:id="@+id/new_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/detailTitle"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/detailTitle"
-        android:src="@drawable/ic_15" />
+        android:layout_alignTop="@+id/comment_detail"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_toLeftOf="@id/new_comment_btn"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_review_selected"
+        app:layout_constraintEnd_toStartOf="@+id/new_comment_btn"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- 구분선  -->
-    <LinearLayout
-        android:id="@+id/division"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#673AB7"
-        android:orientation="vertical"
-        android:layout_below="@+id/detailTitle"
-        android:layout_marginTop="5dp"/>
+    <!-- 작성하기 -->
 
-    <!-- 별점 -->
-    <RatingBar
-        android:id="@+id/movie_ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="?android:attr/ratingBarStyleSmall"
-        android:layout_alignTop="@id/movie_ratingBar_participants"
-        android:layout_toLeftOf="@id/movie_ratingBar_value"
-        android:layout_marginRight="12dp"/>
-
-    <!-- 참여인수 -->
-    <TextView
-        android:id="@+id/movie_ratingBar_participants"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/division"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:text="1142"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textColor="@android:color/darker_gray"/>
-
-    <!-- 평점 지수 -->
-    <TextView
-        android:id="@+id/movie_ratingBar_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/movie_ratingBar_participants"
-        android:layout_toLeftOf="@id/movie_ratingBar_participants"
-        android:layout_marginRight="10dp"
-        android:text="8.2"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textColor="@android:color/darker_gray"/>
-
-    <!-- 구분선  -->
     <LinearLayout
         android:id="@+id/division2"
         android:layout_width="match_parent"
         android:layout_height="5dp"
+        android:layout_marginTop="12dp"
         android:background="#673AB7"
         android:orientation="vertical"
-        android:layout_below="@+id/movie_ratingBar_participants"
-        android:layout_marginTop="8dp"/>
+        app:layout_constraintTop_toBottomOf="@id/new_comment_btn"
+        tools:layout_editor_absoluteX="0dp" />
 
-    <!-- 한줄평  -->
-        <TextView
-            android:id="@+id/comment_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@id/new_comment_btn"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:text="한줄평"
-            android:textSize="22dp"
-            android:textColor="@android:color/black"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/comment_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:text="한줄평"
+        android:textColor="#673AB7"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/new_comment_btn" />
 
-    <!-- 작성하기 -->
-        <ImageView
-            android:id="@+id/new_comment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:layout_toLeftOf="@+id/new_comment_btn"
-            android:layout_alignTop="@+id/comment_detail"
-            android:src="@drawable/ic_review_selected" />
-
-        <Button
-            android:id="@+id/new_comment_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@id/division2"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@android:color/transparent"
-            style="?android:attr/borderlessButtonStyle"
-            android:text="작성하기"
-            android:textColor="@color/colorOrange"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+    <Button
+        android:id="@+id/new_comment_btn"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/division2"
+        android:layout_alignParentEnd="false"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@android:color/transparent"
+        android:text="작성하기"
+        android:textColor="#673AB7"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:id="@+id/comment_scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/new_comment_btn"
-        android:layout_marginTop="10dp">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/division2">
 
         <!-- 한줄평 리스트뷰 -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/comment_list_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:scrollbars="vertical" />
     </ScrollView>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 

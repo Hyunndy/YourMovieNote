@@ -3,9 +3,6 @@ package com.example.hyunndymovieapp.util
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.os.Build
-import android.os.Build.VERSION_CODES
-
 
 class NetworkHelper(val context: Context) {
 

@@ -44,6 +44,7 @@ class MovieListFragment : Fragment() {
         fun onBtnSelected(listIdx : Int)
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -62,10 +63,8 @@ class MovieListFragment : Fragment() {
 
         }
 
-        //@test
         val movieInfo = arguments?.getParcelable<MovieItem>("movieInfo")
         setInfoFromAPI(movieInfo?.title, movieInfo?.release_date, movieInfo?.poster_path, movieInfo?.genre_ids)
-
     }
 
     fun setInfoFromAPI(title:String?, date:String?, url:String?, genre : List<Int>?) {

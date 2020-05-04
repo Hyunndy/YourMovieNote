@@ -10,16 +10,18 @@ const val MOVIEAPI_URL = "https://api.themoviedb.org/3/"
 const val SEARCH_URL = "https://www.justwatch.com/kr/검색?q="
 
 enum class REQUEST(val value:Int){
-    ADD_COMMENT(100),
+    ADD_NOTE(100),
     LOGIN(200),
-    LOGOUT(300)
+    LOGOUT(300),
+    ADD_PHOTO(400)
 }
 
 enum class RESULT(val value:Int){
     SAVE_COMMENT(10),
     DELETE_COMMENT(20),
     SUCCESS_LOGIN(30),
-    SUCCESS_LOGOUT(40)
+    SUCCESS_LOGOUT(40),
+    ADD_POSTER(50),
 }
 
 enum class CHANGECOMMENTLIST(val value:Int){

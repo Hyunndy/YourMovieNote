@@ -5,11 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
-import com.example.hyunndymovieapp.util.REQUEST
 import com.example.hyunndymovieapp.util.RESULT
-import com.example.hyunndymovieapp.util.USERSTATE
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -92,12 +89,15 @@ class LoginActivity : AppCompatActivity() {
 
     fun moveMainPage(user: FirebaseUser?) {
 
+
         // @TODO 메인페이지에서 로그인유저 닉네임 알 수 있게 여기서 던지자.
         if (user != null) {
             setResult(RESULT.SUCCESS_LOGIN.value)
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
+
+
     }
 
     override fun onBackPressed() {

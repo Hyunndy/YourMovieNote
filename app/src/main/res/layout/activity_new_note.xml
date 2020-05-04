@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fadeScrollbars="false"
+    android:isScrollContainer="true"
+    app:layout_scrollFlags="scroll"
+    tools:context=".movienote.NewCommentActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        
+    <!-- 저장 버튼 -->
+    <Button
+        android:id="@+id/note_saveBtn"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/new_comment"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/rectangle_four_line"
+        android:text="저 장"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!-- 영화 타이틀 -->
+
+    <ImageButton
+        android:id="@+id/note_poster"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/note_saveBtn"
+        app:srcCompat="@drawable/image5" />
+
+
+    <EditText
+        android:id="@+id/note_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="노트제목"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/note_poster" />
+
+    <!-- 영화 관람 등급 -->
+
+    <!-- 구분선  -->
+    <LinearLayout
+        android:id="@+id/division"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/detailTitle"
+        android:layout_marginTop="10dp"
+        android:background="#673AB7"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/note_title" />
+
+    <!-- 별점 -->
+
+    <!-- 평점을 입력해주세요 -->
+
+    <RatingBar
+        android:id="@+id/note_ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/division" />
+
+    <!-- 평점 입력란 -->
+
+    <!-- 취소 버튼 -->
+
+    <EditText
+        android:id="@+id/note_contents"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rectangle_radius"
+        android:gravity="start|top"
+        android:hint="100자 이내로 작성해주세요."
+        android:inputType="textLongMessage|textMultiLine"
+        android:maxLength="100"
+        android:paddingStart="10dp"
+        android:paddingTop="15dp"
+
+        android:scrollHorizontally="true"
+        android:singleLine="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/note_ratingBar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
