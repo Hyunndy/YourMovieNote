@@ -1,10 +1,11 @@
-package com.example.hyunndymovieapp.util
+package com.example.hyunndymovieapp.movieList
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.hyunndymovieapp.api.MovieList
-import com.example.hyunndymovieapp.api.MovieManager
+import com.example.hyunndymovieapp.TMDbAPIHelper.MovieManager
+import com.example.hyunndymovieapp.util.API_KEY
+import com.example.hyunndymovieapp.util.MovieList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception

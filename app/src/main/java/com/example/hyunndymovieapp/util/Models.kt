@@ -1,4 +1,4 @@
-package com.example.hyunndymovieapp.api
+package com.example.hyunndymovieapp.util
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
@@ -19,9 +19,7 @@ data class MovieItem(
     val poster_path: String?,
     val overview: String?,
     val genre_ids : List<Int>?
-) : Parcelable {
-
-}
+) : Parcelable {}
 
 @Parcelize
 data class MovieList(

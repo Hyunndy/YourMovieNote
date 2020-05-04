@@ -1,4 +1,4 @@
-package com.example.hyunndymovieapp.Fragment
+package com.example.hyunndymovieapp.movieList
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.hyunndymovieapp.R
-import com.example.hyunndymovieapp.api.MovieList
-import com.example.hyunndymovieapp.util.MovieListViewModel
-import kotlinx.android.synthetic.main.fragment_blank2.*
+import com.example.hyunndymovieapp.util.MovieList
+import kotlinx.android.synthetic.main.fragment_movielist_viewpager.*
 
 open class ViewPagerFragment : Fragment() {
 
@@ -26,7 +25,7 @@ open class ViewPagerFragment : Fragment() {
             showMovieListPage(movie)
         })
 
-        return inflater.inflate(R.layout.fragment_blank2, container, false)
+        return inflater.inflate(R.layout.fragment_movielist_viewpager, container, false)
     }
 
 
@@ -39,7 +38,12 @@ open class ViewPagerFragment : Fragment() {
 
     private fun showMovieListPage(movieList : MovieList?) {
 
-        movieListViewPager.adapter  = MovieListAdapter(requireActivity(), movieList?.results?.size ?: 10 , movieList)
+        movieListViewPager.adapter  =
+            ViewPagerAdapter(
+                requireActivity(),
+                movieList?.results?.size ?: 10,
+                movieList
+            )
         movieListViewPager.run { adapter?.notifyDataSetChanged() }
     }
 }

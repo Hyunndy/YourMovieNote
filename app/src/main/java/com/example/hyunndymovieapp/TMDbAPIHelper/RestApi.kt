@@ -1,4 +1,4 @@
-package com.example.hyunndymovieapp.api
+package com.example.hyunndymovieapp.TMDbAPIHelper
 
 import com.example.hyunndymovieapp.util.MOVIEAPI_URL
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -7,8 +7,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 /*
 RESTAPI 초기화에를 위해 Retrofit의 빌더 사용
-
-
  */
 
 class RestApi {

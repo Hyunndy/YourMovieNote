@@ -1,7 +1,7 @@
-package com.example.hyunndymovieapp.api
+package com.example.hyunndymovieapp.TMDbAPIHelper
 
-import io.reactivex.Observable
-import java.util.*
+import com.example.hyunndymovieapp.util.MovieItem
+import com.example.hyunndymovieapp.util.MovieList
 
 class MovieManager(private val api: RestApi = RestApi()) {
     suspend fun getMovieList(param: Map<String, String>): MovieList { // (1) 매개변수 변경

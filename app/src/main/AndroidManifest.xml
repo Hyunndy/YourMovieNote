@@ -29,10 +29,10 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".movienote.MovieNoteActivity" />
-        <activity android:name=".movienote.NewCommentActivity" />
+        <activity android:name=".reviewList.ReviewActivity" />
+        <activity android:name=".reviewList.AddReviewActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".movieList.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

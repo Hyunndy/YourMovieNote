@@ -1,25 +1,12 @@
-package com.example.hyunndymovieapp.movienote
+package com.example.hyunndymovieapp.reviewList
 
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.hyunndymovieapp.Fragment.ViewPagerFragment
 import com.example.hyunndymovieapp.R
-import com.example.hyunndymovieapp.api.Note
-import com.example.hyunndymovieapp.util.MovieListViewModel
-import com.example.hyunndymovieapp.util.REQUEST
-import com.example.hyunndymovieapp.util.inflate
-import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_comment_list_view.*
-import kotlinx.android.synthetic.main.comment_detail.view.*
 
 /* ----------------------------------------------------------------------------------------------
 작성일: 20.03.05
@@ -30,18 +17,18 @@ Main -> 모두보기 눌렀을 때 들어오는 Activity.
 모든 아이템을 보여준다.
 ------------------------------------------------------------------------------------------------ */
 
-class MovieNoteActivity : AppCompatActivity(), MovieNoteListFragment.OnNoteSelectedListner {
+class ReviewActivity : AppCompatActivity(), ReviewListFragment.OnNoteSelectedListner {
 
     private lateinit var model : ReviewListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_movie_note)
+        setContentView(R.layout.activity_review_main)
 
         model = ViewModelProvider(this)[ReviewListViewModel::class.java]
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.movienote_frame, MovieNoteListFragment())
+            .replace(R.id.movienote_frame, ReviewListFragment())
             .commit()
     }
 
@@ -50,7 +37,7 @@ class MovieNoteActivity : AppCompatActivity(), MovieNoteListFragment.OnNoteSelec
         Log.d("TEST33", "오잉??")
         supportFragmentManager.beginTransaction()
             .addToBackStack(null)
-            .replace(R.id.movienote_frame, DetailMovieNoteFragment.getInstance(selectedNoteIdx))
+            .replace(R.id.movienote_frame, DetailReviewFragment.getInstance(selectedNoteIdx))
             .commit()
     }
 }

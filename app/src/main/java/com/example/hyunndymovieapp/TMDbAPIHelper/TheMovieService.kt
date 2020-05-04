@@ -1,4 +1,4 @@
-package com.example.hyunndymovieapp.api
+package com.example.hyunndymovieapp.TMDbAPIHelper
 
 import kotlinx.coroutines.Deferred
 import retrofit2.Call

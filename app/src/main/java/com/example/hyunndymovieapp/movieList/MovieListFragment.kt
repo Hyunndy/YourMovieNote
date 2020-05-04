@@ -1,4 +1,4 @@
-package com.example.hyunndymovieapp.Fragment
+package com.example.hyunndymovieapp.movieList
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,9 +8,10 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 
 import com.example.hyunndymovieapp.R
-import com.example.hyunndymovieapp.api.MovieGenre
-import com.example.hyunndymovieapp.api.MovieItem
-import kotlinx.android.synthetic.main.fragment_movie_list.*
+import com.example.hyunndymovieapp.util.BITMAP_URL
+import com.example.hyunndymovieapp.util.MovieGenre
+import com.example.hyunndymovieapp.util.MovieItem
+import kotlinx.android.synthetic.main.fragment_movielist.*
 
 /* ----------------------------------------------------------------------------------------------
 작성일: 20.03.07
@@ -44,12 +45,11 @@ class MovieListFragment : Fragment() {
         fun onBtnSelected(listIdx : Int)
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? =  inflater.inflate(R.layout.fragment_movie_list, container, false)
+    ): View? =  inflater.inflate(R.layout.fragment_movielist, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -67,9 +67,9 @@ class MovieListFragment : Fragment() {
         setInfoFromAPI(movieInfo?.title, movieInfo?.release_date, movieInfo?.poster_path, movieInfo?.genre_ids)
     }
 
-    fun setInfoFromAPI(title:String?, date:String?, url:String?, genre : List<Int>?) {
+    private fun setInfoFromAPI(title:String?, date:String?, url:String?, genre : List<Int>?) {
 
-            Glide.with(this).asBitmap().load("https://image.tmdb.org/t/p/w500/${url}").into(detailPoster)
+            Glide.with(this).asBitmap().load(BITMAP_URL+url).into(detailPoster)
 
             // 타이틀
             detailTitle.text = title
@@ -79,12 +79,12 @@ class MovieListFragment : Fragment() {
             //movie_reservation_value.text = reservation.toString()
             // 관람 가능 연령
             var tempgenre = ""
-        if (genre != null) {
-            for(id in genre) {
-                tempgenre += (MovieGenre[id] + " ")
+            if (genre != null) {
+                for(id in genre) {
+                    tempgenre += (MovieGenre[id] + " ")
+                }
             }
-        }
-        movie_age_rating.text = tempgenre
+            movie_age_rating.text = tempgenre
         }
     }
 

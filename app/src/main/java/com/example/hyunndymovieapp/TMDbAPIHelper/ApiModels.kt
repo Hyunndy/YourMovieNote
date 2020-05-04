@@ -1,4 +1,4 @@
-package com.example.hyunndymovieapp.api
+package com.example.hyunndymovieapp.TMDbAPIHelper
 
 /*
 REST API 응답에 사용할 클래스들

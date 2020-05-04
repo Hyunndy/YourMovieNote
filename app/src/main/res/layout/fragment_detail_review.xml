@@ -7,7 +7,7 @@
     android:fadeScrollbars="false"
     android:isScrollContainer="true"
     app:layout_scrollFlags="scroll"
-    tools:context=".movienote.DetailMovieNoteFragment">
+    tools:context=".reviewList.DetailReviewFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,7 +15,37 @@
 
         <!-- 저장 버튼 -->
         <Button
-            android:id="@+id/note_saveBtn"
+            android:id="@+id/saveBtn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/rectangle_four_line"
+            android:text="저장"
+            android:visibility="gone"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toStartOf="@id/editBtn"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <!-- 수정 버튼 -->
+        <Button
+            android:id="@+id/editBtn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/new_comment"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/rectangle_four_line"
+            android:text="수정"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toStartOf="@id/deleteBtn"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/deleteBtn"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,32 +53,36 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/rectangle_four_line"
-            android:text="저 장"
+            android:text="삭제"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
+
+
         <!-- 영화 타이틀 -->
 
-        <ImageView
+        <ImageButton
             android:id="@+id/note_poster_d"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
+            android:clickable="false"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/note_saveBtn"
+            app:layout_constraintTop_toBottomOf="@id/editBtn"
             app:srcCompat="@drawable/image5" />
 
 
-        <TextView
+        <EditText
             android:id="@+id/note_title_d"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
+            android:enabled="false"
             android:text="노트제목"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -87,24 +121,22 @@
 
         <!-- 평점 입력란 -->
 
-        <!-- 취소 버튼 -->
+        <!-- 취소 버튼  android:inputType="textLongMessage|textMultiLine-->
 
-        <TextView
+        <EditText
             android:id="@+id/note_contents_d"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
             android:background="@drawable/rectangle_radius"
             android:gravity="start|top"
             android:hint="100자 이내로 작성해주세요."
-            android:inputType="textLongMessage|textMultiLine"
             android:maxLength="100"
+            android:enabled="false"
             android:paddingStart="10dp"
             android:paddingTop="15dp"
-
             android:scrollHorizontally="true"
             android:singleLine="false"
             app:layout_constraintEnd_toEndOf="parent"

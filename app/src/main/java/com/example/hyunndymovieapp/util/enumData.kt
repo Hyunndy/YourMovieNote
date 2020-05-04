@@ -9,6 +9,8 @@ const val MOVIEAPI_URL = "https://api.themoviedb.org/3/"
 
 const val SEARCH_URL = "https://www.justwatch.com/kr/검색?q="
 
+const val BITMAP_URL = "https://image.tmdb.org/t/p/w500/"
+
 enum class REQUEST(val value:Int){
     ADD_NOTE(100),
     LOGIN(200),

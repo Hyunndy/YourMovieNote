@@ -1,4 +1,4 @@
-package com.example.hyunndymovieapp.util
+package com.example.hyunndymovieapp.TMDbAPIHelper
 
 import android.content.Context
 import android.net.ConnectivityManager

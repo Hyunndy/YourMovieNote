@@ -12,7 +12,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/mainFragment"
-        android:name="com.example.hyunndymovieapp.Fragment.ViewPagerFragment"
+        android:name="com.example.hyunndymovieapp.movieList.ViewPagerFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_anchor="@+id/main_frame"
@@ -22,15 +22,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-
-
-    <!-- 뷰 페이저
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/movie_list_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_anchor="@+id/main_frame"
-        app:layout_anchorGravity="center" />
-       -->
 </androidx.constraintlayout.widget.ConstraintLayout>

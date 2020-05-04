@@ -1,4 +1,4 @@
-package com.example.hyunndymovieapp
+package com.example.hyunndymovieapp.movieList
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,9 +9,9 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.app.ActivityCompat
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
-import com.example.hyunndymovieapp.Fragment.*
-import com.example.hyunndymovieapp.movienote.MovieNoteActivity
-import com.example.hyunndymovieapp.util.MovieListViewModel
+import com.example.hyunndymovieapp.LoginActivity
+import com.example.hyunndymovieapp.R
+import com.example.hyunndymovieapp.reviewList.ReviewActivity
 import com.example.hyunndymovieapp.util.REQUEST
 import com.example.hyunndymovieapp.util.RESULT
 import com.example.hyunndymovieapp.util.USERSTATE
@@ -25,7 +25,6 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 클래스명: MainActivity
 ---------------------------------------------------------------------------------------------- */
 
-//@TODO 유저상태
 var userState : USERSTATE = USERSTATE.LOGOUT
 
 class MainActivity : AppCompatActivity(), MovieListFragment.OnBtnSelectedListner, NavigationView.OnNavigationItemSelectedListener {
@@ -73,7 +72,10 @@ class MainActivity : AppCompatActivity(), MovieListFragment.OnBtnSelectedListner
         setSupportActionBar(toolbar)
 
         // ActionBar 좌상단에 위치한 버튼
-         val toggle = ActionBarDrawerToggle(this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+         val toggle = ActionBarDrawerToggle(this, drawer_layout, toolbar,
+             R.string.navigation_drawer_open,
+             R.string.navigation_drawer_close
+         )
          drawer_layout.addDrawerListener(toggle)
          toggle.syncState()
     }
@@ -85,22 +87,18 @@ class MainActivity : AppCompatActivity(), MovieListFragment.OnBtnSelectedListner
                 val temp = fm.findFragmentById(R.id.mainFragment)
                 if(temp !is ViewPagerFragment) {
                     val ft = fm.beginTransaction()
-                    ft.replace(R.id.mainFragment, ViewPagerFragment())
+                    ft.replace(
+                        R.id.mainFragment,
+                        ViewPagerFragment()
+                    )
                     ft.commit()
                 }
             }
             R.id.nav_movieNote -> {
                 Toast.makeText(applicationContext, "무비노트", Toast.LENGTH_LONG).show()
-                startActivity(Intent(this, MovieNoteActivity::class.java))
-            }
-            R.id.nav_favoriteMovie -> {
-                Toast.makeText(applicationContext, "우왕우왕", Toast.LENGTH_LONG).show()
-            }
-            R.id.nav_setting -> {
-                Toast.makeText(applicationContext, "우왕우왕", Toast.LENGTH_LONG).show()
+                startActivity(Intent(this, ReviewActivity::class.java))
             }
         }
-
 
         drawer_layout.closeDrawer(GravityCompat.START)
 
@@ -110,7 +108,9 @@ class MainActivity : AppCompatActivity(), MovieListFragment.OnBtnSelectedListner
     override fun onBtnSelected(listIdx : Int) {
         val ft = supportFragmentManager.beginTransaction()
         ft.addToBackStack(null)
-        ft.replace(R.id.mainFragment,MovieDetailFragment.getInstance(listIdx))
+        ft.replace(
+            R.id.mainFragment,
+            DetailMovieFragment.getInstance(listIdx))
         ft.commit()
     }
 

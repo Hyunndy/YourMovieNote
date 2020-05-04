@@ -7,7 +7,7 @@
     android:fadeScrollbars="false"
     android:isScrollContainer="true"
     app:layout_scrollFlags="scroll"
-    tools:context=".movienote.NewCommentActivity">
+    tools:context=".reviewList.AddReviewActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -31,16 +31,15 @@
 
     <!-- 영화 타이틀 -->
 
-    <ImageButton
-        android:id="@+id/note_poster"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/note_saveBtn"
-        app:srcCompat="@drawable/image5" />
+        <ImageButton
+            android:id="@+id/note_poster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/note_saveBtn" />
 
 
     <EditText

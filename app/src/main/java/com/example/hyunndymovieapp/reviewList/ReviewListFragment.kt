@@ -1,27 +1,24 @@
-package com.example.hyunndymovieapp.movienote
-
+package com.example.hyunndymovieapp.reviewList
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hyunndymovieapp.R
-import com.example.hyunndymovieapp.api.Note
+import com.example.hyunndymovieapp.util.Note
 import com.example.hyunndymovieapp.util.REQUEST
 import com.example.hyunndymovieapp.util.inflate
-import kotlinx.android.synthetic.main.activity_comment_list_view.*
-import kotlinx.android.synthetic.main.comment_detail.view.*
+import kotlinx.android.synthetic.main.item_review.view.*
+import kotlinx.android.synthetic.main.fragment_reviewlist.*
 
-class MovieNoteListFragment : Fragment() {
+class ReviewListFragment : Fragment() {
 
     private lateinit var viewModel : ReviewListViewModel
     private lateinit var reviewListAdapter : MovieNoteRecyclerViewAdapter
@@ -33,11 +30,13 @@ class MovieNoteListFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity())[ReviewListViewModel::class.java]
         viewModel.getReviewList()?.observe(viewLifecycleOwner, Observer {
-            reviewListAdapter.notes = it
-            reviewListAdapter.notifyDataSetChanged()
+            if(reviewListAdapter.notes?.size != it.size) {
+                reviewListAdapter.notes = it
+                reviewListAdapter.notifyDataSetChanged()
+            }
         })
 
-        return inflater.inflate(R.layout.activity_comment_list_view, container, false)
+        return inflater.inflate(R.layout.fragment_reviewlist, container, false)
     }
 
     //@TODO 인터페이스 생성 / 클릭하면 액티비티에서 상세노트로 Fragment 교체할 수 있도록.
@@ -56,7 +55,7 @@ class MovieNoteListFragment : Fragment() {
 
         comment_list_layout.layoutManager = LinearLayoutManager(activity)
 
-        new_comment_btn.setOnClickListener { startActivityForResult(Intent(activity,  NewCommentActivity::class.java), REQUEST.ADD_NOTE.value) }
+        new_comment_btn.setOnClickListener { startActivity(Intent(activity,  AddReviewActivity::class.java)) }
     }
 
 
@@ -67,12 +66,12 @@ class MovieNoteListFragment : Fragment() {
         private inner class CustomViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-            return CustomViewHolder(parent.inflate(R.layout.comment_detail))
+            return CustomViewHolder(parent.inflate(R.layout.item_review))
         }
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             var view = holder.itemView
-            Glide.with(this@MovieNoteListFragment).load(notes?.get(position)?.imageUrl).override(150,150).into(view.comment_user_profile)
+            Glide.with(this@ReviewListFragment).load(notes?.get(position)?.imageUrl).override(150,150).into(view.comment_user_profile)
             view.comment_user_id.text = notes?.get(position)?.title
             view.comment_detail_text.text = notes?.get(position)?.contents
             view.comment_user_ratingBar.rating = notes?.get(position)?.rating?.toFloat() ?: 0.0F

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.MovieDetailFragment">
+    tools:context=".movieList.DetailMovieFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -36,6 +36,7 @@
                 app:srcCompat="@drawable/image11" />
 
             <!-- 영화 제목 -->
+
             <TextView
                 android:id="@+id/detailTitle"
                 android:layout_width="wrap_content"
@@ -133,15 +134,11 @@
             android:id="@+id/icon_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/contents_layout">
 
-            <!-- 페북  -->
-            <!-- 카톡  -->
-            <!-- 예매하기  -->
             <Button
                 android:id="@+id/serachBtn"
                 android:layout_width="match_parent"
@@ -154,8 +151,19 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/addreviewBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="@color/colorOrange"
+                android:text="리뷰 등록"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
