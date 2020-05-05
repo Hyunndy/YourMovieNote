@@ -62,6 +62,7 @@ class AddReviewActivity : AppCompatActivity() {
             val tempUrl = intent.getStringExtra("movieposter")
             if(tempUrl != null) { posterUrl = Uri.parse(tempUrl) }
             Glide.with(this).load(tempUrl).into(note_poster)
+
         }
     }
 
@@ -101,11 +102,12 @@ class AddReviewActivity : AppCompatActivity() {
                 note_title.text.toString(),
                 posterUrl?.toString(),
                 note_contents.text.toString(),
-                note_ratingBar.numStars,
-                System.currentTimeMillis()
+                note_ratingBar.rating,
+                System.currentTimeMillis(),
+                FirebaseAuth.getInstance().currentUser?.uid!!
             )
 
-            firestore?.collection("MovieNote")?.document(newNote.timestamp.toString())?.set(newNote)
+            firestore?.collection("MovieNote")?.document(newNote.uid)?.collection("reviews")?.document(newNote.timestamp.toString())?.set(newNote)
             finish()
     }
 }

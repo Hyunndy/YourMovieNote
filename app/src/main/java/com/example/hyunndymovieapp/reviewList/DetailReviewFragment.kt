@@ -55,9 +55,8 @@ class DetailReviewFragment : Fragment() {
         review = getReview(viewModel)
 
         setInfoFromAPI()
-
         deleteBtn.setOnClickListener {
-            FirebaseFirestore.getInstance().collection("MovieNote").document(review?.timestamp.toString()).delete().addOnSuccessListener {
+            FirebaseFirestore.getInstance().collection("MovieNote").document(review?.uid!!).collection("reviews").document(review?.timestamp.toString()).delete().addOnSuccessListener {
                 (activity as ReviewActivity).supportFragmentManager.beginTransaction()
                     .replace(R.id.movienote_frame, ReviewListFragment())
                     .commit()
@@ -69,6 +68,7 @@ class DetailReviewFragment : Fragment() {
             note_title_d.isEnabled = true
             note_contents_d.isEnabled = true
             note_poster_d.isEnabled = true
+            note_ratingBar_d.setIsIndicator(false)
         }
 
         saveBtn.setOnClickListener{
@@ -77,21 +77,19 @@ class DetailReviewFragment : Fragment() {
             var map = mutableMapOf<String, Any>()
             map["title"] = note_title_d.text.toString()
             map["contents"] = note_contents_d.text.toString()
-            map["rating"] = note_ratingBar_d.numStars
+            map["rating"] = note_ratingBar_d.rating
             map["imageUrl"] = posterUrl.toString()
 
-            FirebaseFirestore.getInstance().collection("MovieNote").document(review?.timestamp.toString()).update(map).addOnCompleteListener {
+            FirebaseFirestore.getInstance().collection("MovieNote").document(review?.uid!!).collection("reviews").document(review?.timestamp.toString()).update(map).addOnCompleteListener {
                 (activity as ReviewActivity).supportFragmentManager.beginTransaction()
                     .replace(R.id.movienote_frame, ReviewListFragment())
                     .commit()
             }
         }
 
-
         note_poster_d.setOnClickListener {
             openAlbum()
         }
-
     }
 
     var getReview : (ReviewListViewModel) -> Note? = { model : ReviewListViewModel->
@@ -101,7 +99,7 @@ class DetailReviewFragment : Fragment() {
     private fun setInfoFromAPI() {
         note_title_d.setText(review?.title)
         note_contents_d.setText(review?.contents)
-        note_ratingBar_d.rating = review?.rating?.toFloat() ?: 0.0F
+        note_ratingBar_d.rating = review?.rating ?: 0.0F
         Glide.with(this).load(review?.imageUrl).into(note_poster_d)
 
         if (review?.imageUrl != null) {

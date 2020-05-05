@@ -35,6 +35,12 @@ class LoginActivity : AppCompatActivity() {
 
         // Firebase 로그인 통합 관리하는 Object 만들기
         auth = FirebaseAuth.getInstance()
+        if(auth?.currentUser?.email!=null){
+            Toast.makeText(applicationContext, "로그아웃 되었습니다.", Toast.LENGTH_LONG).show()
+            auth?.signOut()
+            setResult(RESULT.SUCCESS_LOGOUT.value)
+            finish()
+        }
 
         //구글 로그인 옵션
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -64,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-    fun createAndLoginEmail() {
+    private fun createAndLoginEmail() {
         auth?.createUserWithEmailAndPassword(username.text.toString(), password.text.toString())?.addOnCompleteListener {
             if(it.isSuccessful) {
                 //로그인 성공 및 다음페이지 호출
@@ -77,7 +83,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun signinEmail() {
+    private fun signinEmail() {
         auth?.signInWithEmailAndPassword(username.text.toString(), password.text.toString())?.addOnCompleteListener {
             if(it.isSuccessful) {
                 //로그인 성공 및 다음페이지 호출
@@ -88,17 +94,13 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun moveMainPage(user: FirebaseUser?) {
-
+    private fun moveMainPage(user: FirebaseUser?) {
 
         // @TODO 메인페이지에서 로그인유저 닉네임 알 수 있게 여기서 던지자.
         if (user != null) {
             setResult(RESULT.SUCCESS_LOGIN.value)
-            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
-
-
     }
 
     override fun onBackPressed() {
@@ -106,7 +108,7 @@ class LoginActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
-    fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
+    private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         auth?.signInWithCredential(credential)
             ?.addOnCompleteListener { task ->
@@ -117,6 +119,12 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
+    fun googleLogin(view: View) {
+        Toast.makeText(this, "구글로그인", Toast.LENGTH_SHORT).show()
+        val signInIntent = googleSignInClient?.signInIntent
+
+        startActivityForResult(signInIntent, GOOGLE_LOGIN_CODE)
+    }
     fun emailLogin(view: View) {
         Toast.makeText(this, "이메일로그인", Toast.LENGTH_SHORT).show()
         if (username.text.toString().isEmpty() || password.text.toString().isEmpty()) {
@@ -125,11 +133,5 @@ class LoginActivity : AppCompatActivity() {
         } else {
             createAndLoginEmail()
         }
-
-    }
-    fun googleLogin(view: View) {
-        Toast.makeText(this, "구글로그인", Toast.LENGTH_SHORT).show()
-        val signInIntent = googleSignInClient?.signInIntent
-        startActivityForResult(signInIntent, GOOGLE_LOGIN_CODE)
     }
 }

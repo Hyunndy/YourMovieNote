@@ -3,6 +3,7 @@ package com.example.hyunndymovieapp.movieList
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -16,8 +17,12 @@ import com.example.hyunndymovieapp.util.REQUEST
 import com.example.hyunndymovieapp.util.RESULT
 import com.example.hyunndymovieapp.util.USERSTATE
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.nav_header_main.*
+import kotlinx.android.synthetic.main.nav_header_main.view.*
+import kotlinx.android.synthetic.main.nav_header_main.view.nav_user_email
 
 /* ----------------------------------------------------------------------------------------------
 작성일: 20.03.05
@@ -34,33 +39,28 @@ class MainActivity : AppCompatActivity(), MovieListFragment.OnBtnSelectedListner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        model = ViewModelProvider(this)[MovieListViewModel::class.java]
         setContentView(R.layout.activity_main)
+        ActivityCompat.requestPermissions(this, permissionList, 1)
         createNavigationBar()
 
-        // 권한 요청
-        ActivityCompat.requestPermissions(this, permissionList, 1)
-
-        //@TODO 로그인/로그아웃
         logInBtn.setOnClickListener {
-            when(userState) {
-                USERSTATE.LOGIN ->  startActivityForResult(Intent(this, LoginActivity::class.java), REQUEST.LOGOUT.value)
-                USERSTATE.LOGOUT -> startActivityForResult(Intent(this, LoginActivity::class.java), REQUEST.LOGIN.value)
-            }
+            startActivityForResult(Intent(this, LoginActivity::class.java), REQUEST.LOGOUT.value)
         }
+
+        model = ViewModelProvider(this)[MovieListViewModel::class.java]
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (resultCode) {
-            // 로그인/로그아웃 누르고 로그인되서 나온 경우
-             RESULT.SUCCESS_LOGIN.value-> {
-                 userState = USERSTATE.LOGIN
-                 logInBtn.text = "로그아웃"
+            RESULT.SUCCESS_LOGIN.value -> {
+                nav_view.nav_user_email.text = FirebaseAuth.getInstance().currentUser?.email
+                logInBtn.setText(R.string.btn_logout)
             }
             RESULT.SUCCESS_LOGOUT.value-> {
-                userState = USERSTATE.LOGOUT
-                logInBtn.text = "로그인"
+                logInBtn.setText(R.string.btn_login)
+                nav_view.nav_user_email.text = ""
             }
         }
     }
@@ -70,12 +70,20 @@ class MainActivity : AppCompatActivity(), MovieListFragment.OnBtnSelectedListner
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener{
             drawer_layout.openDrawer(GravityCompat.END)
+
+            if(FirebaseAuth.getInstance().currentUser != null) {
+                nav_user_email.text = FirebaseAuth.getInstance().currentUser!!.email
+                logInBtn.setText(R.string.btn_logout)
+            } else {
+                logInBtn.setText(R.string.btn_login)
+                nav_user_email.setText(R.string.nav_email)
+            }
         }
-
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
         nav_view.setNavigationItemSelectedListener(this)
     }
+
+
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
@@ -92,8 +100,11 @@ class MainActivity : AppCompatActivity(), MovieListFragment.OnBtnSelectedListner
                 }
             }
             R.id.nav_movieNote -> {
-                Toast.makeText(applicationContext, "무비노트", Toast.LENGTH_LONG).show()
-                startActivity(Intent(this, ReviewActivity::class.java))
+                if(FirebaseAuth.getInstance().currentUser == null) {
+                    Toast.makeText(applicationContext, "로그인 후 이용할 수 있습니다.", Toast.LENGTH_LONG).show()
+                } else {
+                    startActivity(Intent(this, ReviewActivity::class.java))
+                }
             }
         }
 

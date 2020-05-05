@@ -32,9 +32,7 @@ class ReviewActivity : AppCompatActivity(), ReviewListFragment.OnNoteSelectedLis
             .commit()
     }
 
-    //@TODO 받은 Note로 새 Fragment열기
     override fun onNoteSelected(selectedNoteIdx: Int) {
-        Log.d("TEST33", "오잉??")
         supportFragmentManager.beginTransaction()
             .addToBackStack(null)
             .replace(R.id.movienote_frame, DetailReviewFragment.getInstance(selectedNoteIdx))

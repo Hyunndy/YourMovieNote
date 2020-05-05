@@ -32,10 +32,10 @@ class MovieListViewModel : ViewModel() {
                     "sort_by" to "popularity.desc"
                 )
 
-                val retrivedMovie = movieManager.getMovieList(param)
-                retrivedMovie.page = retrivedMovie.page?.plus(1)
+                val retrievedMovie = movieManager.getMovieList(param)
+                retrievedMovie.page = retrievedMovie.page?.plus(1)
 
-                movieList?.value = retrivedMovie
+                movieList?.value = retrievedMovie
 
             } catch (e: Exception) {
                 e.printStackTrace()

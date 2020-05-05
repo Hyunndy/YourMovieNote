@@ -5,9 +5,6 @@ import kotlinx.android.parcel.Parcelize
 
 /*
 각 영화 아이템을 위한 데이터 클래스 정의
-
-@Parcelize 어노테이션
-Parcelable 기본형태를 써도됨.
  */
 
 @Parcelize
@@ -31,5 +28,5 @@ val MovieGenre = hashMapOf(28 to "액션", 12 to "모험", 16 to "애니메이�
 
 
 @Parcelize
-data class Note( var title : String? = null, var imageUrl : String? = null, var contents : String? = null, var rating : Int = 0, var timestamp: Long? = null) :
+data class Note( var title : String? = null, var imageUrl : String? = null, var contents : String? = null, var rating : Float = 0.0F, var timestamp: Long? = null, var uid : String = "") :
     Parcelable {}

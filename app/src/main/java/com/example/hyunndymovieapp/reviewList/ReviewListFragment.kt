@@ -73,7 +73,7 @@ class ReviewListFragment : Fragment() {
             Glide.with(this@ReviewListFragment).load(notes?.get(position)?.imageUrl).into(view.comment_user_profile)
             view.comment_user_id.text = notes?.get(position)?.title
             view.comment_detail_text.text = notes?.get(position)?.contents
-            view.comment_user_ratingBar.rating = notes?.get(position)?.rating?.toFloat() ?: 0.0F
+            view.comment_user_ratingBar.rating = notes?.get(position)?.rating?: 0.0F
 
             view.setOnClickListener {
                 clickedNote(position)

@@ -21,7 +21,8 @@
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/space" />
+        app:srcCompat="@drawable/space"
+        android:contentDescription="@string/nav_description"/>
 
     <TextView
         android:id="@+id/nav_user_email"
@@ -29,7 +30,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
-        android:text="@string/login_email"
         android:textColor="@color/colorWhite"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nav_user_profile" />

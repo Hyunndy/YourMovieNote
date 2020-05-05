@@ -15,6 +15,7 @@ import com.example.hyunndymovieapp.util.MovieItem
 
 import com.example.hyunndymovieapp.util.*
 import kotlinx.android.synthetic.main.fragment_detail_movie.*
+import kotlinx.android.synthetic.main.fragment_movielist.*
 
 /* ----------------------------------------------------------------------------------------------
 작성일: 20.03.07
@@ -32,8 +33,7 @@ class DetailMovieFragment : Fragment() {
     companion object {
         fun getInstance(index : Int) : Fragment {
 
-            val fragment =
-                DetailMovieFragment()
+            val fragment = DetailMovieFragment()
             fragment.selectedIdx = index
             return fragment
         }
@@ -66,15 +66,24 @@ class DetailMovieFragment : Fragment() {
 
     private fun setInfoFromAPI() {
 
-        Glide.with(this).load(BITMAP_URL+movieInfo?.poster_path).into(detailPoster)
         // 타이틀
         detailTitle.text = movieInfo?.title
+        //포스터
+        Glide.with(this).load(BITMAP_URL+movieInfo?.poster_path).into(detailPoster)
         // 개봉일
-        //detailReleaseDate.text =  movieInfo?.release_date
+        detailReleaseDate.text =  movieInfo?.release_date
         // 줄거리
         detailOverView.text = movieInfo?.overview
-
-        detailRatingbar.rating = movieInfo?.vote_average!!.div(2)
+        // 별점
+        detailRatingbar.rating = movieInfo?.vote_average ?: 0.0F
+        // 장르
+        var tempgenre = ""
+        if (movieInfo?.genre_ids != null) {
+            for (id in movieInfo?.genre_ids!!) {
+                tempgenre += (MovieGenre[id] + " ")
+            }
+        }
+        detailGenre.text = tempgenre
     }
 
     private fun setBtnListener(){
@@ -88,7 +97,6 @@ class DetailMovieFragment : Fragment() {
             startActivity(intent)
         }
 
-        //@TODO 여기서 이 정보의 데이터들을 전달해야한다.
          addreviewBtn.setOnClickListener {
              val movieInfoIntent = Intent(activity, AddReviewActivity::class.java)
              var tmep = BITMAP_URL+movieInfo?.poster_path

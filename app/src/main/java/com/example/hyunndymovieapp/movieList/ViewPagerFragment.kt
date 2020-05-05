@@ -11,6 +11,15 @@ import com.example.hyunndymovieapp.R
 import com.example.hyunndymovieapp.util.MovieList
 import kotlinx.android.synthetic.main.fragment_movielist_viewpager.*
 
+/*
+이름: ViewPagerFragment
+설명:
+- 영화 목록 Viewpager 가 들어있는 Fragment.
+- MainActivity 의 main_frame 레이아웃에 나타나며 ViewPager 안의 View는 MovieListFragment.
+- MVVM 패턴을 이용해 UI 업데이트
+ */
+
+
 open class ViewPagerFragment : Fragment() {
 
     private lateinit var viewModel : MovieListViewModel
@@ -38,12 +47,7 @@ open class ViewPagerFragment : Fragment() {
 
     private fun showMovieListPage(movieList : MovieList?) {
 
-        movieListViewPager.adapter  =
-            ViewPagerAdapter(
-                requireActivity(),
-                movieList?.results?.size ?: 10,
-                movieList
-            )
+        movieListViewPager.adapter  = ViewPagerAdapter( requireActivity(), movieList?.results?.size ?: 0, movieList)
         movieListViewPager.run { adapter?.notifyDataSetChanged() }
     }
 }

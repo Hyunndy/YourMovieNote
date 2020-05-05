@@ -10,5 +10,5 @@ import com.example.hyunndymovieapp.util.MovieList
 class ViewPagerAdapter (activity: FragmentActivity, var itemsCount: Int, private var movieList : MovieList?) : FragmentStateAdapter(activity) {
 
     override fun getItemCount(): Int = itemsCount
-    override fun createFragment(position: Int): Fragment = MovieListFragment.getInstance(movieList?.results?.get(position), position)
+    override fun createFragment(position: Int): Fragment = MovieListFragment.getInstance(position)//movieList?.results?.get(position), position)
 }

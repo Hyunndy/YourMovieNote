@@ -25,7 +25,8 @@
             android:src="@drawable/image1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/movielist_description"/>
 
         <TextView
             android:id="@+id/movielist_title"
@@ -40,7 +41,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ratingBar" />
+            app:layout_constraintTop_toBottomOf="@id/movielist_ratingbar" />
 
         <ImageView
             android:id="@+id/movielist_slider"
@@ -85,10 +86,13 @@
             app:layout_constraintTop_toBottomOf="@+id/movielist_genre" />
 
         <RatingBar
-            android:id="@+id/ratingBar"
+            android:id="@+id/movielist_ratingbar"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:isIndicator="true"
+            android:numStars="10"
             android:rating="5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
