@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.hyunndymovieapp.*
@@ -14,6 +15,7 @@ import com.example.hyunndymovieapp.reviewList.AddReviewActivity
 import com.example.hyunndymovieapp.util.MovieItem
 
 import com.example.hyunndymovieapp.util.*
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_detail_movie.*
 import kotlinx.android.synthetic.main.fragment_movielist.*
 
@@ -98,11 +100,16 @@ class DetailMovieFragment : Fragment() {
         }
 
          addreviewBtn.setOnClickListener {
-             val movieInfoIntent = Intent(activity, AddReviewActivity::class.java)
-             var tmep = BITMAP_URL+movieInfo?.poster_path
-             movieInfoIntent.putExtra("movieposter", tmep)
-             movieInfoIntent.putExtra("movietitle", movieInfo?.title)
-             startActivity(movieInfoIntent)
+
+             if(FirebaseAuth.getInstance().currentUser == null) {
+                 Toast.makeText(activity, "로그인 후 이용할 수 있습니다.", Toast.LENGTH_LONG).show()
+             } else {
+                 val movieInfoIntent = Intent(activity, AddReviewActivity::class.java)
+                 var tmep = BITMAP_URL+movieInfo?.poster_path
+                 movieInfoIntent.putExtra("movieposter", tmep)
+                 movieInfoIntent.putExtra("movietitle", movieInfo?.title)
+                 startActivity(movieInfoIntent)
+             }
          }
     }
 }
