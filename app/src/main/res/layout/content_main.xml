@@ -10,6 +10,7 @@
     tools:ignore="ExtraText">
 
 
+    <!-- 영화 목록(뷰페이저) <-> 상세 영화화면(프래그먼트) 전환을 위한 프래그먼트컨테이너 뷰-->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/mainFragment"
         android:name="com.example.hyunndymovieapp.movieList.ViewPagerFragment"

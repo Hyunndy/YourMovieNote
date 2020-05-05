@@ -6,31 +6,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    tools:openDrawer="end">
 
+    <!-- 툴바 + 메인액티비티의 컨텐츠 -->
     <include
         layout="@layout/app_bar_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent" />
 
-    <!-- 바로가기 메뉴 -->
+    <!-- 네비게이션 메뉴 -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
+        android:layout_gravity="end"
+        android:background="@drawable/main_background"
         app:headerLayout="@layout/nav_header_main"
+        app:itemBackground="@android:color/transparent"
+        app:itemIconTint="@color/colorWhite"
+        app:itemTextAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:itemTextColor="@color/colorWhite"
         app:menu="@menu/nav_menu_main">
 
         <Button
             android:id="@+id/logInBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginTop="10dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="10dp"
-            android:text="로그인" />
+            android:background="@drawable/rectangle_radius"
+            android:text="@string/btn_login"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhite" />
     </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

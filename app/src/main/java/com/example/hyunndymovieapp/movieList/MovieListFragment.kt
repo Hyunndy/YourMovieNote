@@ -69,12 +69,12 @@ class MovieListFragment : Fragment() {
 
     private fun setInfoFromAPI(title:String?, date:String?, url:String?, genre : List<Int>?) {
 
-            Glide.with(this).asBitmap().load(BITMAP_URL+url).into(detailPoster)
+            Glide.with(this).asBitmap().load(BITMAP_URL+url).into(movielist_poster)
 
             // 타이틀
-            detailTitle.text = title
+            movielist_title.text = title
             // 개봉일
-            detailReleaseDate.text = date
+            //detailReleaseDate.text = date
             // 예매율
             //movie_reservation_value.text = reservation.toString()
             // 관람 가능 연령
@@ -84,7 +84,7 @@ class MovieListFragment : Fragment() {
                     tempgenre += (MovieGenre[id] + " ")
                 }
             }
-            movie_age_rating.text = tempgenre
+            movielist_genre.text = tempgenre
         }
     }
 

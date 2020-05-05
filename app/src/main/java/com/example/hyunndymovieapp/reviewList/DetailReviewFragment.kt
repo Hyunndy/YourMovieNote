@@ -102,7 +102,7 @@ class DetailReviewFragment : Fragment() {
         note_title_d.setText(review?.title)
         note_contents_d.setText(review?.contents)
         note_ratingBar_d.rating = review?.rating?.toFloat() ?: 0.0F
-        Glide.with(this).load(review?.imageUrl).override(150,150).into(note_poster_d)
+        Glide.with(this).load(review?.imageUrl).into(note_poster_d)
 
         if (review?.imageUrl != null) {
             posterUrl = Uri.parse(review?.imageUrl)
@@ -127,7 +127,7 @@ class DetailReviewFragment : Fragment() {
             requestCode == PICK_IMAGE_FROM_ALBUM && resultCode == Activity.RESULT_OK -> {
                 posterUrl = data?.data
                 // ImageView에 사진을 띄운다.
-                Glide.with(this).load(posterUrl).override(150,150).into(note_poster_d)
+                Glide.with(this).load(posterUrl).into(note_poster_d)
             }
         }
     }

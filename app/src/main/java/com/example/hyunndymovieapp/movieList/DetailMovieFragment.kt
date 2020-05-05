@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.hyunndymovieapp.*
@@ -16,9 +15,6 @@ import com.example.hyunndymovieapp.util.MovieItem
 
 import com.example.hyunndymovieapp.util.*
 import kotlinx.android.synthetic.main.fragment_detail_movie.*
-import kotlinx.android.synthetic.main.fragment_detail_movie.detailPoster
-import kotlinx.android.synthetic.main.fragment_detail_movie.detailReleaseDate
-import kotlinx.android.synthetic.main.fragment_detail_movie.detailTitle
 
 /* ----------------------------------------------------------------------------------------------
 작성일: 20.03.07
@@ -74,7 +70,7 @@ class DetailMovieFragment : Fragment() {
         // 타이틀
         detailTitle.text = movieInfo?.title
         // 개봉일
-        detailReleaseDate.text =  movieInfo?.release_date
+        //detailReleaseDate.text =  movieInfo?.release_date
         // 줄거리
         detailOverView.text = movieInfo?.overview
 

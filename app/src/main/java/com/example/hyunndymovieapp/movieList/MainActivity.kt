@@ -67,17 +67,14 @@ class MainActivity : AppCompatActivity(), MovieListFragment.OnBtnSelectedListner
 
     private fun createNavigationBar() {
 
-        nav_view.setNavigationItemSelectedListener(this)
-
         setSupportActionBar(toolbar)
+        toolbar.setNavigationOnClickListener{
+            drawer_layout.openDrawer(GravityCompat.END)
+        }
 
-        // ActionBar 좌상단에 위치한 버튼
-         val toggle = ActionBarDrawerToggle(this, drawer_layout, toolbar,
-             R.string.navigation_drawer_open,
-             R.string.navigation_drawer_close
-         )
-         drawer_layout.addDrawerListener(toggle)
-         toggle.syncState()
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        nav_view.setNavigationItemSelectedListener(this)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -100,7 +97,7 @@ class MainActivity : AppCompatActivity(), MovieListFragment.OnBtnSelectedListner
             }
         }
 
-        drawer_layout.closeDrawer(GravityCompat.START)
+        drawer_layout.closeDrawer(GravityCompat.END)
 
         return true
     }

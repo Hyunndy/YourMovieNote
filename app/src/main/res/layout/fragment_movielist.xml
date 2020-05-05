@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/movie_list_layout"
     android:layout_width="match_parent"
@@ -8,106 +8,91 @@
     android:background="@drawable/main_background"
     tools:context=".movieList.MovieListFragment">
 
-    <ScrollView
+
+    <!-- 포스터 -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/movielist_poster"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/image1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/movielist_title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/movielist_poster"
+            android:layout_marginTop="10dp"
+            android:text="@string/movielist_title"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ratingBar" />
 
-            <!-- 포스터 -->
-            <ImageView
-                android:id="@+id/detailPoster"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/image1" />
+        <ImageView
+            android:id="@+id/movielist_slider"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/movielist_title"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/home_slider1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movielist_poster"
+            android:contentDescription="@string/movielist_description"/>
 
-            <TextView
-                android:id="@+id/detailTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/detailPoster"
-                android:layout_marginTop="10dp"
-                android:text="1. 군 도"
-                android:textAlignment="center"
-                android:textColor="@color/colorWhite"
-                android:textSize="25sp" />
+        <TextView
+            android:id="@+id/movielist_genre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/movielist_slider"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.2"
+            android:text="@string/movielist_genre"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movielist_title" />
 
-            <ImageView
-                android:id="@+id/movie_list_slider"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/detailTitle"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/home_slider1" />
+        <Button
+            android:id="@+id/show_movie_detail_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rectangle_radius_full"
+            android:text="@string/brn_movielist"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movielist_genre" />
 
-            <LinearLayout
-                android:id="@+id/movie_list_information"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/movie_list_slider"
-                android:weightSum="3">
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:rating="5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movielist_slider" />
 
-                <TextView
-                    android:id="@+id/movie_reservation_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/movie_list_slider"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1.5"
-                    android:background="@drawable/rectangle_right_line"
-                    android:paddingRight="10dp"
-                    android:text="예매율 61.6%"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/movie_age_rating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/movie_list_slider"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="0.2"
-                    android:background="@drawable/rectangle_right_line"
-                    android:text="15세 관람가"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/detailReleaseDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/movie_list_slider"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1.3"
-                    android:paddingStart="5dp"
-                    android:text="D-1"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/show_movie_detail_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/movie_list_information"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/rectangle_radius_full"
-                android:text="상세보기"
-                android:textAlignment="center"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp" />
-        </RelativeLayout>
-    </ScrollView>
-
-
-</FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

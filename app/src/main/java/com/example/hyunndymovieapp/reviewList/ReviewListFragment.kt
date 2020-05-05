@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hyunndymovieapp.R
 import com.example.hyunndymovieapp.util.Note
-import com.example.hyunndymovieapp.util.REQUEST
 import com.example.hyunndymovieapp.util.inflate
 import kotlinx.android.synthetic.main.item_review.view.*
 import kotlinx.android.synthetic.main.fragment_reviewlist.*
@@ -55,7 +54,7 @@ class ReviewListFragment : Fragment() {
 
         comment_list_layout.layoutManager = LinearLayoutManager(activity)
 
-        new_comment_btn.setOnClickListener { startActivity(Intent(activity,  AddReviewActivity::class.java)) }
+        add_review_Btn.setOnClickListener { startActivity(Intent(activity,  AddReviewActivity::class.java)) }
     }
 
 
@@ -71,7 +70,7 @@ class ReviewListFragment : Fragment() {
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             var view = holder.itemView
-            Glide.with(this@ReviewListFragment).load(notes?.get(position)?.imageUrl).override(150,150).into(view.comment_user_profile)
+            Glide.with(this@ReviewListFragment).load(notes?.get(position)?.imageUrl).into(view.comment_user_profile)
             view.comment_user_id.text = notes?.get(position)?.title
             view.comment_detail_text.text = notes?.get(position)?.contents
             view.comment_user_ratingBar.rating = notes?.get(position)?.rating?.toFloat() ?: 0.0F

@@ -5,12 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".movieList.ViewPagerFragment">
 
-
+    <!-- 영화 목록 화면을 위한 VIewPager2. ViewPager 안의 Fragment의 layout은 Fragment_movielist -->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/movieListViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center" />
-
 
 </FrameLayout>

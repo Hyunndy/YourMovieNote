@@ -1,68 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
     android:orientation="vertical">
 
     <!-- 계정 프로필 -->
-    <ImageView
-        android:id="@+id/comment_user_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/user1" />
 
     <!-- 계정 아이디 -->
-    <TextView
-        android:id="@+id/comment_user_id"
-        android:layout_width="wrap_content"
+
+    <ImageView
+        android:id="@+id/movielist_slider"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
+        android:layout_below="@+id/movielist_title"
         android:layout_marginTop="10dp"
-        android:layout_toRightOf="@+id/comment_user_profile"
-        android:text="guswlapdlzj"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+        android:contentDescription="@string/movielist_description"
+        android:src="@drawable/home_slider1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/comment_user_profile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/user1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movielist_slider" />
 
     <!-- 코멘트 등록 시간 -->
-    <TextView
-        android:id="@+id/comment_registered_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/comment_user_id"
-        android:layout_alignLeft="@+id/comment_user_id"
-        android:layout_marginTop="2dp"
-        android:layout_toRightOf="@+id/comment_user_profile"
-        android:text="10"
-        android:textSize="10dp" />
 
     <!-- 유저가 올린 평점 -->
-    <androidx.appcompat.widget.AppCompatRatingBar
-        android:id="@+id/comment_user_ratingBar"
-        style="?android:attr/ratingBarStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/comment_registered_time"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/comment_registered_time" />
 
     <!-- 한줄평 -->
+
     <TextView
-        android:id="@+id/comment_detail_text"
+        android:id="@+id/comment_user_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-thin"
+        android:singleLine="true"
+        android:text="@string/review_title"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/comment_user_profile"
+        app:layout_constraintTop_toBottomOf="@+id/movielist_slider" />
+
+    <androidx.appcompat.widget.AppCompatRatingBar
+        android:id="@+id/comment_user_ratingBar"
+        style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/comment_registered_time"
-        android:layout_alignLeft="@+id/comment_registered_time"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="적당히 재밌다. 오랜만에 잠 안오는 영화 봤네요."
-        android:textColor="@android:color/black" />
+        app:layout_constraintStart_toEndOf="@+id/comment_user_profile"
+        app:layout_constraintTop_toBottomOf="@+id/comment_user_id" />
 
-    <!-- 추천 -->
+    <TextView
+        android:id="@+id/comment_detail_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:scrollHorizontally="false"
+        android:singleLine="true"
+        android:text="@string/detail_movie_overview_contents"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/comment_user_profile"
+        app:layout_constraintTop_toBottomOf="@+id/comment_user_ratingBar" />
 
-    <!-- 추천 -->
+    <ImageView
+        android:id="@+id/movielist_slider3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comment_detail_text"
+        android:contentDescription="@string/movielist_description"
+        android:src="@drawable/home_slider1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- 추천 수 -->
-
-    <!-- 신고하기 -->
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

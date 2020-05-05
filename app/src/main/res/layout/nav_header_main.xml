@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_header_layout"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
@@ -12,22 +13,24 @@
 
     <ImageView
         android:id="@+id/nav_user_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="25dp"
-        android:scaleType="center"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/ring_radius_full"
-        app:srcCompat="@drawable/profile" />
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/space" />
 
     <TextView
         android:id="@+id/nav_user_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/nav_user_profile"
-        android:layout_alignStart="@id/nav_user_profile"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="20dp"
-        android:text="yoosa3004@naver.com"
-        android:textColor="@color/colorWhite" />
-</RelativeLayout>
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/login_email"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nav_user_profile" />
+</androidx.constraintlayout.widget.ConstraintLayout>

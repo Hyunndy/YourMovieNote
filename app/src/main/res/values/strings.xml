@@ -1,12 +1,13 @@
 <resources>
-    <string name="app_name">HyunndyMovieApp</string>
+    <string name="app_name">YourMovieNote</string>
+
     <string name="title_activity_add_comment">AddCommentActivity</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="navigation_drawer_open">Drawer Open</string>
-    <string name="navigation_drawer_close">Drawer Closed</string>
+    <string name="navigation_drawer_open">openDrawer</string>
+    <string name="navigation_drawer_close">closeDrawer</string>
     <string name="title_activity_testactivitiy">testactivitiy</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
@@ -19,4 +20,44 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+
+    <!-- 영화 목록 -->
+    <string name="movielist_title">영화 제목</string>
+    <string name="movielist_genre">영화 장르</string>
+
+    <!-- 상세 영화 화면 -->
+    <string name="detail_movie_overview">줄거리</string>
+    <string name="detail_movie_overview_contents">네가 웃음을 퍼뜨리면 진실을 찾을 수 있을거야 많이 웃어 나의 모나미</string>
+    <string name="detail_movie_release">2020.05.05</string>
+
+    <!-- 리뷰 화면 -->
+    <string name="review_title">리뷰 제목을 입력하세요</string>
+    <string name="review_contents">리뷰 내용을 입력하세요</string>
+
+    <!-- 리뷰 화면 -->
+    <string name="login_email">이메일을 입력하세요</string>
+    <string name="login_password">비밀번호를 입력하세요</string>
+
+
+    <!-- 버튼 -->
+    <string name="btn_login">&#160;&#160;로그인&#160;&#160;</string>
+    <string name="btn_logout">&#160;&#160;로그아웃&#160;&#160;</string>
+    <string name="brn_movielist">&#160;&#160;상세 보기&#160;&#160;</string>
+    <string name="btn_add_review">&#160;&#160;리뷰 등록&#160;&#160;</string>
+    <string name="btn_search_streaming">&#160;&#160;스트리밍 검색&#160;&#160;</string>
+    <string name="btn_save">&#160;&#160;저장&#160;&#160;</string>
+    <string name="btn_edit">&#160;&#160;편집&#160;&#160;</string>
+    <string name="btn_delete">&#160;&#160;삭제&#160;&#160;</string>
+    <string name="btn_email_login">&#160;&#160;이메일 로그인&#160;&#160;</string>
+    <string name="btn_google_login">&#160;&#160;구글 로그인&#160;&#160;</string>
+
+    <!-- 툴바 -->
+    <string name="toolbar_movie_list">인기 영화 목록</string>
+    <string name="toolbar_review_list">리뷰 목록</string>
+
+    <!-- Contents Descriptions -->
+    <string name="splash_description"> Views in Splash Activity </string>
+    <string name="detail_movie_description"> Views in Detail Movie Fragment </string>
+    <string name="movielist_description"> Views in Movie List Fragment</string>
+    <string name="detail_review_description"> Views in Detail Review Fragment</string>
 </resources>

@@ -10,7 +10,7 @@ android:bottom="1dp"
 android:right="1dp"
 android:left="1dp">
 
-<shape android:shape="rectangle" android:padding="10dp">
+<shape android:shape="rectangle" android:padding="5dp">
     <stroke android:width="2dp"  android:color="#BE55DA" />
     <corners
         android:bottomRightRadius="20dp"

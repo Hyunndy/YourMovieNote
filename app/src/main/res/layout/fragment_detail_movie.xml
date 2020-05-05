@@ -1,169 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/movie_detail_fragment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movie_detail_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_background"
     tools:context=".movieList.DetailMovieFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF">
+        android:layout_height="match_parent">
 
         <!-- 영화정보란 -->
-        <RelativeLayout
-            android:id="@+id/moveInfo_layout"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:background="@drawable/main_background"
-            android:foregroundGravity="top|center_horizontal|fill"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <!-- 포스터 -->
-            <ImageView
-                android:id="@+id/detailPoster"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="10dp"
-                app:srcCompat="@drawable/image11" />
-
-            <!-- 영화 제목 -->
-
-            <TextView
-                android:id="@+id/detailTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="50dp"
-                android:layout_toRightOf="@+id/detailPoster"
-                android:text="군도"
-                android:textColor="@color/colorWhite"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-
-            <RatingBar
-                android:id="@+id/detailRatingbar"
-                style="?android:attr/ratingBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/detailGenre"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="16dp"
-                android:layout_toEndOf="@+id/detailPoster" />
-
-            <TextView
-                android:id="@+id/detailReleaseDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/detailTitle"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_toEndOf="@+id/detailPoster"
-                android:text="2019.03.08"
-                android:textColor="@color/colorWhite"
-                android:textSize="25dp"
-                android:textStyle="normal" />
-
-            <!-- 장르 -->
-            <TextView
-                android:id="@+id/detailGenre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/detailReleaseDate"
-                android:layout_marginLeft="30dp"
-                android:layout_toRightOf="@+id/detailPoster"
-                android:text="액션"
-                android:textColor="@color/colorWhite"
-                android:textSize="20dp"
-                android:textStyle="normal" />
-
-            <TextView
-                android:id="@+id/grade_ratingBar_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/detailGenre"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_toEndOf="@id/detailRatingbar"
-                android:text="0.0"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/contents_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/moveInfo_layout">
-
-            <TextView
-                android:id="@+id/movie_story"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="줄거리"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/detailOverView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="군도, 백성을 구하라! \n 양반과 탐관오리들의 착취가 극에 달했던 조선 철종 13년. \n힘 없는 백성의 편이 되어 세상을 바로잡고자 하는 의적떼인 군도(群盜), 지리산 추설이 있었다. \n\n쌍칼 도치 vs 백성의 적 조윤잦은 자연재해, 기근과 관의 횡포까지 겹쳐 백성들의 삶이 날로 피폐해져 가는 사이, 나주 대부호의 서자로 조선 최고의 무관 출신인 조윤은 극악한 수법으로 양민들을 수탈, 삼남지방 최고의 대부호로 성장한다. \n\n한편 소, 돼지를 잡아 근근이 살아가던 천한 백정 돌무치는 죽어도 잊지 못할 끔찍한 일을 당한 뒤 군도에 합류. 지리산 추설의 신 거성(新 巨星) 도치로 거듭난다.뭉치면 백성, 흩어지면 도적!망할 세상을 뒤집기 위해, 백성이 주인인 새 세상을 향해 도치를 필두로 한 군도는 백성의 적, 조윤과 한 판 승부를 시작하는데..." />
-        </LinearLayout>
-
-
-        <!-- 페북/카톡/예매하기  -->
-        <LinearLayout
-            android:id="@+id/icon_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+        <!-- 포스터 -->
+        <ImageView
+            android:id="@+id/detailPoster"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="30dp"
+            android:contentDescription="@string/detail_movie_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contents_layout">
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/image11" />
 
-            <Button
-                android:id="@+id/serachBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:background="@color/colorOrange"
-                android:text="스트리밍검색"
-                android:textAlignment="center"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/addreviewBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:background="@color/colorOrange"
-                android:text="리뷰 등록"
-                android:textAlignment="center"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+        <!-- 영화 제목 -->
+        <TextView
+            android:id="@+id/detailTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
+            android:text="@string/movielist_title"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailPoster" />
+
+        <!-- 평점 -->
+        <RatingBar
+            android:id="@+id/detailRatingbar"
+            style="@style/Widget.AppCompat.RatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:numStars="5"
+            android:rating="5"
+            android:saveEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailPoster" />
+
+        <!-- 장르 -->
+        <TextView
+            android:id="@+id/detailGenre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/movielist_genre"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/colorWhite"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailTitle" />
+
+        <!-- 개봉일자 -->
+        <TextView
+            android:id="@+id/detailReleaseDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/detail_movie_release"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/colorWhite"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailGenre" />
+
+        <!-- 구분선 -->
+        <ImageView
+            android:id="@+id/movielist_slider"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/home_slider1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailReleaseDate"
+            android:contentDescription="@string/movielist_description"/>
+
+        <!-- 줄거리 타이틀 -->
+        <TextView
+            android:id="@+id/detailOverview_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/detail_movie_overview"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movielist_slider" />
+
+        <!-- 줄거리 내용 -->
+        <TextView
+            android:id="@+id/detailOverView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:lineSpacingExtra="10dp"
+            android:text="@string/detail_movie_overview_contents"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailOverview_title" />
+
+        <!-- 구분선 -->
+        <ImageView
+            android:id="@+id/movielist_slider2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/movielist_description"
+            android:src="@drawable/home_slider1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailOverView" />
+
+        <!-- 스트리밍 사이트 검색 -->
+        <Button
+            android:id="@+id/serachBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle_radius"
+            android:text="@string/btn_search_streaming"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movielist_slider2" />
+
+        <ImageView
+            android:id="@+id/searchImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="10dp"
+            android:src="@android:drawable/ic_menu_search"
+            app:layout_constraintEnd_toStartOf="@+id/serachBtn"
+            app:layout_constraintTop_toBottomOf="@+id/movielist_slider2"
+            android:contentDescription="@string/detail_movie_description" />
+
+        <ImageView
+            android:id="@+id/addreviewImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="10dp"
+            android:src="@android:drawable/ic_menu_edit"
+            app:layout_constraintEnd_toStartOf="@+id/addreviewBtn"
+            app:layout_constraintTop_toBottomOf="@+id/serachBtn"
+            android:contentDescription="@string/detail_movie_description"/>
+
+        <Button
+            android:id="@+id/addreviewBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle_radius"
+            android:text="@string/btn_add_review"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/serachBtn" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
