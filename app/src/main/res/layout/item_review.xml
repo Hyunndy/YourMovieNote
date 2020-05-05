@@ -15,7 +15,6 @@
         android:id="@+id/movielist_slider"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/movielist_title"
         android:layout_marginTop="10dp"
         android:contentDescription="@string/movielist_description"
         android:src="@drawable/home_slider1"

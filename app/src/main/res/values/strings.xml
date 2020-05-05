@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">YourMovieNote</string>
+    <string name="app_name">당신의무비노트</string>
 
     <string name="title_activity_add_comment">AddCommentActivity</string>
 
